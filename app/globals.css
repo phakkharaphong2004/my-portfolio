@@ -24,3 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.sh-root .sh-btn {
+  background: #3b82f6;
+  color: #f8fafc;
+}
