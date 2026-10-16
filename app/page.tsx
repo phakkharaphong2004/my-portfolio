@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { VolumetricStudio } from "@/components/ui/volumetric-studio";
+import { VolumetricStudio } from "./components/ui/volumetric-studio";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
