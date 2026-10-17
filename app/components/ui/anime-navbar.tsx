@@ -23,30 +23,46 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
-  const [hidden, setHidden] = useState(false)
+    const [hidden, setHidden] = useState(false)
+  const [inView, setInView] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  // ซ่อนเมนูตอนเลื่อนลง แสดงตอนเลื่อนขึ้น
+  // ซ่อนเมนูตอนเลื่อนลง และเช็คว่าเลื่อนมาถึงส่วน #anchor ไหนแล้ว
   useEffect(() => {
     let last = window.scrollY
-    const onScroll = () => {
+    const update = () => {
       const y = window.scrollY
       setHidden(y > last && y > 80)
       last = y
+
+      let found: string | null = null
+      for (const item of items) {
+        const id = item.url.split("#")[1]
+        if (!id) continue
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) {
+          found = id
+        }
+      }
+      setInView(found)
     }
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    update()
+    window.addEventListener("scroll", update, { passive: true })
+    return () => window.removeEventListener("scroll", update)
+  }, [items, pathname])
 
   if (!mounted) return null
-
+    const anchorItem = items.find((i) => i.url.split("#")[1] === inView)
   const activeTab =
-    items.find((i) =>
-      i.url === "/" ? pathname === "/" : pathname.startsWith(i.url)
-    )?.name ?? defaultActive
+    (pathname === "/" && anchorItem?.name) ||
+    items.find((i) => {
+      if (i.url.includes("#")) return false
+      return i.url === "/" ? pathname === "/" : pathname.startsWith(i.url)
+    })?.name ||
+    defaultActive
 
   return (
     <div
