@@ -2,7 +2,7 @@ import { projects } from "../data/projects";
 
 export default function Projects() {
   return (
-    <main className="mx-auto max-w-5xl p-8">
+    <main className="mx-auto max-w-5xl px-8 pb-16 pt-36">
       <h1 className="mb-8 text-3xl font-bold">Projects</h1>
       <div className="grid gap-6 sm:grid-cols-2">
         {projects.map((p) => (
