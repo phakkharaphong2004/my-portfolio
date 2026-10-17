@@ -74,9 +74,9 @@ export default function Home() {
           </span>
 
           <h1 className="mt-8 text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-7xl xl:text-8xl">
-            Full-Stack
+            COMPUTER ENGINEERING
             <br />
-            <span className="grad-text">Developer</span>
+            <span className="grad-text">UX/UI DESIGN · FULL-STACK</span>
           </h1>
 
           <p className="mt-6 text-lg text-[#F8FAFC]/60">
