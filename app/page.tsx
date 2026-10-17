@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "ชื่อของคุณ";
@@ -7,9 +8,21 @@ const INTRO =
   "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง";
 
 const contacts = [
-  { label: "Email", value: "phakkharaphongsaranggam@email.com", href: "phakkharaphongsaranggam@email.com" },
-  { label: "Line", value: "phakkharaphong2004", href: "https://line.me/ti/p/phakkharaphong2004" },
-  { label: "GitHub", value: "phakkharaphong2004", href: "https://github.com/phakkharaphong2004" },
+  {
+    label: "Email",
+    value: "phakkharaphongsaranggam@email.com",
+    href: "mailto:phakkharaphongsaranggam@email.com",
+  },
+  {
+    label: "Line",
+    value: "phakkharaphong2004",
+    href: "https://line.me/ti/p/~phakkharaphong2004",
+  },
+  {
+    label: "GitHub",
+    value: "phakkharaphong2004",
+    href: "https://github.com/phakkharaphong2004",
+  },
   { label: "Phone", value: "065-320-4366", href: "tel:0653204366" },
 ];
 
@@ -47,56 +60,84 @@ export default function Home() {
     <div className="relative overflow-hidden bg-[#0B0D12] text-[#F8FAFC]">
       {/* พื้นหลังเรืองแสง */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-[#8B5CF6]/25 blur-[120px]" />
-      <div className="pointer-events-none absolute top-[420px] -right-40 h-[420px] w-[420px] rounded-full bg-[#3B82F6]/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-40 top-[420px] h-[420px] w-[420px] rounded-full bg-[#3B82F6]/20 blur-[120px]" />
       <div className="dot-grid pointer-events-none absolute inset-0 h-[900px]" />
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-5xl px-6 pt-32 text-center md:pt-40">
-        <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-[#F8FAFC]/80">
-          <span className="h-2 w-2 rounded-full bg-[#a78bfa]" />
-          Open to internships
-        </span>
+      <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pt-32 md:pt-40 lg:grid-cols-[1.25fr_0.75fr]">
+        {/* ข้อความ (ชิดซ้าย) */}
+        <div className="text-center lg:text-left">
+          <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-[#F8FAFC]/80">
+            <span className="h-2 w-2 rounded-full bg-[#a78bfa]" />
+            Open to internships
+          </span>
 
-        <h1 className="mt-8 text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-7xl md:text-8xl">
-          Full-Stack
-          <br />
-          <span className="grad-text">Developer</span>
-        </h1>
+          <h1 className="mt-8 text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-7xl xl:text-8xl">
+            Full-Stack
+            <br />
+            <span className="grad-text">Developer</span>
+          </h1>
 
-        <p className="mt-6 text-lg text-[#F8FAFC]/60">
-          Hi, I&apos;m <span className="font-semibold text-[#F8FAFC]">{NAME}</span>
-        </p>
-        <p className="mx-auto mt-3 max-w-2xl text-[#F8FAFC]/60">{INTRO}</p>
+          <p className="mt-6 text-lg text-[#F8FAFC]/60">
+            Hi, I&apos;m{" "}
+            <span className="font-semibold text-[#F8FAFC]">{NAME}</span>
+          </p>
+          <p className="mx-auto mt-3 max-w-xl text-[#F8FAFC]/60 lg:mx-0">
+            {INTRO}
+          </p>
 
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href="/projects"
-            className="rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-8 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.45)] transition hover:scale-105"
-          >
-            ดูผลงาน
-          </Link>
-          <a
-            href="#contact"
-            className="glass rounded-full px-8 py-3.5 font-semibold transition hover:scale-105 hover:border-[#3B82F6]"
-          >
-            ติดต่อฉัน
-          </a>
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+            <Link
+              href="/projects"
+              className="rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-8 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.45)] transition hover:scale-105"
+            >
+              ดูผลงาน
+            </Link>
+            <a
+              href="#contact"
+              className="glass rounded-full px-8 py-3.5 font-semibold transition hover:scale-105 hover:border-[#3B82F6]"
+            >
+              ติดต่อฉัน
+            </a>
+          </div>
+        </div>
+
+        {/* รูปโปรไฟล์ (ขวา) */}
+        <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
+          <div className="absolute -inset-8 rounded-full bg-[#8B5CF6]/25 blur-3xl" />
+          <div className="glow-card float-slow relative p-2">
+            <div className="relative overflow-hidden rounded-[18px]">
+              <Image
+                src="/profile.jpg"
+                alt={`รูปโปรไฟล์ของ ${NAME}`}
+                width={900}
+                height={1260}
+                priority
+                className="h-auto w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D12]/80 via-transparent to-[#8B5CF6]/10" />
+              <div className="glass absolute inset-x-4 bottom-4 rounded-xl px-4 py-3">
+                <p className="font-semibold">{NAME}</p>
+                <p className="text-xs text-[#F8FAFC]/60">Full-Stack Developer</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* การ์ดกระจกซ้อนกัน */}
-      <section className="relative mx-auto mt-20 grid max-w-6xl items-center gap-6 px-6 md:grid-cols-[1fr_1.35fr_1fr]">
+      <section className="relative mx-auto mt-24 grid max-w-6xl items-center gap-6 px-6 md:grid-cols-[1fr_1.35fr_1fr]">
         {/* หน้าต่างโค้ด */}
         <div className="glass float-slow rounded-2xl p-4 md:-rotate-2">
           <Dots />
-          <pre className="mt-4 overflow-x-auto font-mono text-xs leading-6">
+          <div className="mt-4 overflow-x-auto font-mono text-xs leading-6">
             {code.map((l, i) => (
               <div key={i} className={`whitespace-pre ${l.c}`}>
                 <span className="mr-3 select-none text-[#F8FAFC]/25">{i + 1}</span>
                 {l.t}
               </div>
             ))}
-          </pre>
+          </div>
         </div>
 
         {/* หน้าต่างเบราว์เซอร์ */}
@@ -128,9 +169,17 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="flex h-36 items-center justify-center" style={{ perspective: 600 }}>
+            <div
+              className="flex h-36 items-center justify-center"
+              style={{ perspective: 600 }}
+            >
               <div className="cube">
-                <i /><i /><i /><i /><i /><i />
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
               </div>
             </div>
           </div>
@@ -138,10 +187,15 @@ export default function Home() {
 
         {/* รายการทักษะ */}
         <div className="glass float-slow rounded-2xl p-4 md:rotate-2">
-          <p className="mb-3 text-xs uppercase tracking-widest text-[#F8FAFC]/40">Skills</p>
+          <p className="mb-3 text-xs uppercase tracking-widest text-[#F8FAFC]/40">
+            Skills
+          </p>
           <div className="space-y-3">
             {skills.map((s) => (
-              <div key={s.title} className="flex items-center gap-3 rounded-xl bg-[#0B0D12]/50 p-3">
+              <div
+                key={s.title}
+                className="flex items-center gap-3 rounded-xl bg-[#0B0D12]/50 p-3"
+              >
                 <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#3B82F6] text-xs font-bold">
                   {s.icon}
                 </div>
@@ -156,7 +210,10 @@ export default function Home() {
       </section>
 
       {/* ติดต่อ */}
-      <section id="contact" className="relative mx-auto max-w-4xl px-6 py-24">
+      <section
+        id="contact"
+        className="relative mx-auto max-w-4xl scroll-mt-24 px-6 py-24"
+      >
         <h2 className="text-center text-4xl font-extrabold">
           <span className="grad-text">ติดต่อฉัน</span>
         </h2>
@@ -170,10 +227,10 @@ export default function Home() {
               href={c.href}
               target="_blank"
               rel="noreferrer"
-              className="glass rounded-2xl p-6 transition hover:-translate-y-1 hover:border-[#3B82F6]"
+              className="glow-card p-6 sm:p-7"
             >
               <p className="mb-1 text-sm text-[#F8FAFC]/50">{c.label}</p>
-              <p className="text-lg font-semibold">{c.value}</p>
+              <p className="break-all text-lg font-semibold">{c.value}</p>
             </a>
           ))}
         </div>
