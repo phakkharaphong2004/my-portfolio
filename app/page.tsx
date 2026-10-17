@@ -103,19 +103,19 @@ export default function Home() {
         </div>
 
         {/* รูปโปรไฟล์ (ขวา) */}
-        <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-          <div className="absolute -inset-8 rounded-full bg-[#8B5CF6]/25 blur-3xl" />
-          <div className="glow-card float-slow relative p-2">
-            <div className="relative overflow-hidden rounded-[18px]">
+        <div className="relative mx-auto w-full max-w-[19rem] lg:mx-0 lg:w-[90%] lg:max-w-none lg:justify-self-end">
+          <div className="absolute -inset-8 rounded-full bg-[#8B5CF6]/20 blur-3xl" />
+          <div className="photo-frame float-slow">
+            <div className="photo-inner">
               <Image
-                src="/profile.jpg"
+                src="/profile.webp"
                 alt={`รูปโปรไฟล์ของ ${NAME}`}
                 width={900}
                 height={1260}
                 priority
                 className="h-auto w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D12]/80 via-transparent to-[#8B5CF6]/10" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B0D12]/85 to-transparent" />
               <div className="glass absolute inset-x-4 bottom-4 rounded-xl px-4 py-3">
                 <p className="font-semibold">{NAME}</p>
                 <p className="text-xs text-[#F8FAFC]/60">Full-Stack Developer</p>
