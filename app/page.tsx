@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import MatrixRain from "./components/MatrixRain";
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "ชื่อของคุณ";
@@ -107,16 +108,17 @@ export default function Home() {
           <div className="absolute -inset-8 rounded-full bg-[#8B5CF6]/20 blur-3xl" />
           <div className="photo-frame float-slow">
             <div className="photo-inner">
+              <MatrixRain />
               <Image
                 src="/profile.webp"
                 alt={`รูปโปรไฟล์ของ ${NAME}`}
                 width={900}
                 height={1260}
                 priority
-                className="h-auto w-full object-cover"
+                className="relative z-10 h-auto w-full object-cover"
               />
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B0D12]/85 to-transparent" />
-              <div className="glass absolute inset-x-4 bottom-4 rounded-xl px-4 py-3">
+              <div className="absolute inset-x-0 bottom-0 z-20 h-1/3 bg-gradient-to-t from-[#0B0D12]/85 to-transparent" />
+              <div className="glass absolute inset-x-4 bottom-4 z-20 rounded-xl px-4 py-3">
                 <p className="font-semibold">{NAME}</p>
                 <p className="text-xs text-[#F8FAFC]/60">Full-Stack Developer</p>
               </div>
