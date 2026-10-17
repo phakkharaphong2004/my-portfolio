@@ -73,10 +73,17 @@ export default function Home() {
             Open to internships
           </span>
 
-          <h1 className="mt-8 text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-7xl xl:text-8xl">
-            COMPUTER ENGINEERING
-            <br />
-            <span className="grad-text">UX/UI DESIGN · FULL-STACK</span>
+          <h1 className="mt-8 font-extrabold uppercase leading-[1.05] tracking-tight">
+            <span className="block text-xs font-semibold tracking-[0.4em] text-[#F8FAFC]/50 sm:text-sm">
+              Computer Engineering
+            </span>
+            <span className="mt-3 block text-4xl sm:text-6xl xl:text-7xl">
+              UX/UI Design
+            </span>
+            <span className="block text-4xl sm:text-6xl xl:text-7xl">
+              <span className="grad-text">Full-Stack</span>
+              <span className="ml-2 inline-block h-[0.8em] w-[0.1em] translate-y-[0.08em] animate-pulse bg-[#a78bfa]" />
+            </span>
           </h1>
 
           <p className="mt-6 text-lg text-[#F8FAFC]/60">
@@ -120,7 +127,9 @@ export default function Home() {
               <div className="absolute inset-x-0 bottom-0 z-20 h-1/3 bg-gradient-to-t from-[#0B0D12]/85 to-transparent" />
               <div className="glass absolute inset-x-4 bottom-4 z-20 rounded-xl px-4 py-3">
                 <p className="font-semibold">{NAME}</p>
-                <p className="text-xs text-[#F8FAFC]/60">Full-Stack Developer</p>
+                <p className="text-xs text-[#F8FAFC]/60">
+                  Full-Stack Developer
+                </p>
               </div>
             </div>
           </div>
@@ -135,7 +144,9 @@ export default function Home() {
           <div className="mt-4 overflow-x-auto font-mono text-xs leading-6">
             {code.map((l, i) => (
               <div key={i} className={`whitespace-pre ${l.c}`}>
-                <span className="mr-3 select-none text-[#F8FAFC]/25">{i + 1}</span>
+                <span className="mr-3 select-none text-[#F8FAFC]/25">
+                  {i + 1}
+                </span>
                 {l.t}
               </div>
             ))}
@@ -154,7 +165,8 @@ export default function Home() {
             <div>
               <h2 className="text-2xl font-bold leading-tight">
                 Building the future,{" "}
-                <span className="text-[#a78bfa]">one line</span> of code at a time.
+                <span className="text-[#a78bfa]">one line</span> of code at a
+                time.
               </h2>
               <p className="mt-2 text-xs text-[#F8FAFC]/50">
                 เว็บ แอป และระบบ IoT ที่ใช้งานได้จริง
@@ -166,7 +178,10 @@ export default function Home() {
                 >
                   Explore Now
                 </Link>
-                <Link href="/about" className="glass rounded-lg px-4 py-2 text-xs">
+                <Link
+                  href="/about"
+                  className="glass rounded-lg px-4 py-2 text-xs"
+                >
                   About
                 </Link>
               </div>
