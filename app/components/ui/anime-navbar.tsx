@@ -23,24 +23,42 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
+  const [hidden, setHidden] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // ซ่อนเมนูตอนเลื่อนลง แสดงตอนเลื่อนขึ้น
+  useEffect(() => {
+    let last = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setHidden(y > last && y > 80)
+      last = y
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   if (!mounted) return null
 
-  // หน้าปัจจุบันดูจาก URL
   const activeTab =
     items.find((i) =>
       i.url === "/" ? pathname === "/" : pathname.startsWith(i.url)
     )?.name ?? defaultActive
 
   return (
-    <div className={cn("fixed top-4 left-0 right-0 z-[9999]", className)}>
+    <div
+      className={cn(
+        "pointer-events-none fixed inset-x-0 top-2 z-[9999] transition-transform duration-300",
+        hidden && "-translate-y-full",
+        className
+      )}
+    >
       <div className="flex justify-center pt-10">
         <motion.div
-          className="relative flex items-center gap-3 rounded-full border border-white/10 bg-black/50 px-2 py-2 shadow-lg backdrop-blur-lg"
+          className="pointer-events-auto relative flex items-center gap-1 rounded-full border border-white/10 bg-[#0B0D12]/70 p-1.5 shadow-lg backdrop-blur-lg"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -57,7 +75,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(
-                  "relative cursor-pointer rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300",
+                  "relative cursor-pointer rounded-full px-4 py-2 text-[13px] font-semibold transition-all duration-300",
                   "text-white/70 hover:text-white",
                   isActive && "text-white"
                 )}
@@ -72,7 +90,6 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                     <div className="absolute inset-0 rounded-full bg-[#8B5CF6]/25 blur-md" />
                     <div className="absolute inset-[-4px] rounded-full bg-[#3B82F6]/20 blur-xl" />
                     <div className="absolute inset-[-8px] rounded-full bg-[#8B5CF6]/15 blur-2xl" />
-                    <div className="absolute inset-[-12px] rounded-full bg-[#3B82F6]/5 blur-3xl" />
                     <div
                       className="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/0 via-[#8B5CF6]/30 to-[#3B82F6]/0"
                       style={{ animation: "shine 3s ease-in-out infinite" }}
@@ -93,7 +110,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Icon size={18} strokeWidth={2.5} />
+                  <Icon size={16} strokeWidth={2.5} />
                 </motion.span>
 
                 <AnimatePresence>
@@ -114,7 +131,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                     initial={false}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   >
-                    <div className="relative h-12 w-12">
+                    <div className="relative h-12 w-12 origin-bottom scale-75">
                       <motion.div
                         className="absolute left-1/2 h-10 w-10 -translate-x-1/2 rounded-full bg-white"
                         animate={
