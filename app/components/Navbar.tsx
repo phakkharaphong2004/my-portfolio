@@ -7,7 +7,7 @@ const items = [
   { name: "Home", url: "/", icon: Home },
   { name: "About", url: "/about", icon: User },
   { name: "Projects", url: "/projects", icon: Folder },
-  { name: "Contact", url: "/contact", icon: Mail },
+  { name: "Contact", url: "/#contact", icon: Mail },
 ]
 
 export default function Navbar() {

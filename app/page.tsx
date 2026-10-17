@@ -51,7 +51,7 @@ export default function Home() {
       <div className="dot-grid pointer-events-none absolute inset-0 h-[900px]" />
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-5xl px-6 pt-16 text-center md:pt-24">
+      <section className="relative mx-auto max-w-5xl px-6 pt-32 text-center md:pt-40">
         <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-[#F8FAFC]/80">
           <span className="h-2 w-2 rounded-full bg-[#a78bfa]" />
           Open to internships

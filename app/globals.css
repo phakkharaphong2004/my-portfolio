@@ -89,3 +89,8 @@ body {
   50% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+html,
+body {
+  background: #0b0d12;
+  color: #f8fafc;
+}
