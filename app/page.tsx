@@ -170,7 +170,7 @@ export default function Home() {
               href={c.href}
               target="_blank"
               rel="noreferrer"
-              className="glass rounded-2xl p-6 transition hover:-translate-y-1 hover:border-[#3B82F6]"
+              className="glow-card p-6 sm:p-7"
             >
               <p className="mb-1 text-sm text-[#F8FAFC]/50">{c.label}</p>
               <p className="text-lg font-semibold">{c.value}</p>
