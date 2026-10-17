@@ -9,16 +9,14 @@ const links = [
 
 export default function Navbar() {
   return (
-    <nav className="flex gap-6 bg-[#0B0D12] p-6 text-[#F8FAFC]">
-      {links.map((l) => (
-        <Link
-          key={l.href}
-          href={l.href}
-          className="transition hover:text-[#3B82F6]"
-        >
-          {l.label}
-        </Link>
-      ))}
+    <nav className="relative z-10 flex justify-center bg-[#0B0D12] px-6 pt-6">
+      <div className="glass flex gap-6 rounded-full px-6 py-2.5 text-sm text-[#F8FAFC]">
+        {links.map((l) => (
+          <Link key={l.href} href={l.href} className="transition hover:text-[#a78bfa]">
+            {l.label}
+          </Link>
+        ))}
+      </div>
     </nav>
   );
 }

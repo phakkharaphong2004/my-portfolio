@@ -28,3 +28,59 @@ body {
   background: #3b82f6;
   color: #f8fafc;
 }
+.grad-text {
+  background: linear-gradient(180deg, #a78bfa 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(32, 37, 48, 0.75), rgba(32, 37, 48, 0.35));
+  border: 1px solid rgba(248, 250, 252, 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px -20px rgba(59, 130, 246, 0.35);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(248, 250, 252, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+.float-slow { animation: float 8s ease-in-out infinite reverse; }
+
+@keyframes spin-cube {
+  from { transform: rotateX(-20deg) rotateY(0deg); }
+  to { transform: rotateX(-20deg) rotateY(360deg); }
+}
+.cube {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  transform-style: preserve-3d;
+  animation: spin-cube 14s linear infinite;
+}
+.cube i {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(167, 139, 250, 0.7);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(59, 130, 246, 0.15));
+  box-shadow: inset 0 0 24px rgba(139, 92, 246, 0.5), 0 0 30px rgba(139, 92, 246, 0.35);
+}
+.cube i:nth-child(1) { transform: translateZ(48px); }
+.cube i:nth-child(2) { transform: rotateY(90deg) translateZ(48px); }
+.cube i:nth-child(3) { transform: rotateY(180deg) translateZ(48px); }
+.cube i:nth-child(4) { transform: rotateY(-90deg) translateZ(48px); }
+.cube i:nth-child(5) { transform: rotateX(90deg) translateZ(48px); }
+.cube i:nth-child(6) { transform: rotateX(-90deg) translateZ(48px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .float, .float-slow, .cube { animation: none; }
+}
