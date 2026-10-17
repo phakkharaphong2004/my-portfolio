@@ -3,7 +3,7 @@ import Image from "next/image";
 import MatrixRain from "./components/MatrixRain";
 
 // แก้ตรงนี้: ข้อมูลของคุณ
-const NAME = "ชื่อของคุณ";
+const NAME = "Phakkharaphong Sarang-ngam ";
 const HANDLE = "@phakkharaphong2004";
 const INTRO =
   "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง";
