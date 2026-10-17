@@ -7,10 +7,10 @@ const INTRO =
   "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง";
 
 const contacts = [
-  { label: "Email", value: "your@email.com", href: "mailto:your@email.com" },
-  { label: "Line", value: "your-line-id", href: "https://line.me/ti/p/~your-line-id" },
+  { label: "Email", value: "phakkharaphongsaranggam@email.com", href: "phakkharaphongsaranggam@email.com" },
+  { label: "Line", value: "phakkharaphong2004", href: "https://line.me/ti/p/phakkharaphong2004" },
   { label: "GitHub", value: "phakkharaphong2004", href: "https://github.com/phakkharaphong2004" },
-  { label: "Phone", value: "0XX-XXX-XXXX", href: "tel:0000000000" },
+  { label: "Phone", value: "065-320-4366", href: "tel:0653204366" },
 ];
 
 const skills = [
