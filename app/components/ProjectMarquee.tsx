@@ -12,7 +12,7 @@ export default function ProjectMarquee({
   images: string[];
   alt: string;
   duration?: number; // วินาทีต่อ 1 รอบ (ยิ่งมากยิ่งช้า)
-  reverse?: boolean;
+  reverse?: boolean; // true = วิ่งลง
 }) {
   const [paused, setPaused] = useState(false);
 
@@ -23,18 +23,19 @@ export default function ProjectMarquee({
 
   return (
     <div
-      className="marquee-wrap relative h-full min-h-[260px] w-full overflow-hidden bg-[#12141d] py-4"
+      className="relative h-[340px] w-full overflow-hidden bg-[#12141d] md:h-full md:min-h-[340px]"
       style={{
         WebkitMaskImage:
-          "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)",
+          "linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)",
         maskImage:
-          "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)",
+          "linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)",
       }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
+      {/* absolute ทำให้ความสูงของแทร็กไม่ดันการ์ดให้ยืดตามจำนวนรูป */}
       <div
-        className="marquee-track flex h-full w-max items-center"
+        className="marquee-track-y absolute inset-x-0 top-0 flex w-full flex-col items-center px-6"
         style={{
           animationDuration: `${duration}s`,
           animationDirection: reverse ? "reverse" : "normal",
@@ -45,14 +46,14 @@ export default function ProjectMarquee({
           <div
             key={i}
             aria-hidden={i >= slides.length}
-            className="relative mr-4 aspect-[3/2] w-56 shrink-0 overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 hover:border-[#8B5CF6]/60 sm:w-64"
+            className="relative mb-4 aspect-[3/2] w-full max-w-sm shrink-0 overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 hover:border-[#8B5CF6]/60"
           >
             {src ? (
               <Image
                 src={src}
                 alt={`${alt} ${(i % slides.length) + 1}`}
                 fill
-                sizes="256px"
+                sizes="384px"
                 draggable={false}
                 className="object-cover"
               />

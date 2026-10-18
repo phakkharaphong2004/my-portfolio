@@ -207,3 +207,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .skill-tag.is-bounce .skill-icon { animation: none; }
 }
+@keyframes marquee-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.marquee-track-y {
+  animation: marquee-y 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track-y { animation: none; }
+}
