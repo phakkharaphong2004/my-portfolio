@@ -37,6 +37,40 @@ const education = [
   },
 ];
 
+// แก้ตรงนี้: เกียรติบัตรช่วงมหาวิทยาลัย (ไฟล์อยู่ใน public/univ/)
+const univPhotos = [
+  {
+    src: "/univ/1.jpg",
+    title: "ชื่อเกียรติบัตรที่ 1",
+    caption: "คำอธิบายสั้น ๆ",
+  },
+  {
+    src: "/univ/2.jpg",
+    title: "ชื่อเกียรติบัตรที่ 2",
+    caption: "คำอธิบายสั้น ๆ",
+  },
+  {
+    src: "/univ/3.jpg",
+    title: "ชื่อเกียรติบัตรที่ 3",
+    caption: "คำอธิบายสั้น ๆ",
+  },
+  {
+    src: "/univ/4.jpg",
+    title: "ชื่อเกียรติบัตรที่ 4",
+    caption: "คำอธิบายสั้น ๆ",
+  },
+  {
+    src: "/univ/5.jpg",
+    title: "ชื่อเกียรติบัตรที่ 5",
+    caption: "คำอธิบายสั้น ๆ",
+  },
+  {
+    src: "/univ/6.jpg",
+    title: "ชื่อเกียรติบัตรที่ 6",
+    caption: "คำอธิบายสั้น ๆ",
+  },
+];
+
 // แก้ตรงนี้: รูปกิจกรรมสมัยมัธยม (ไฟล์อยู่ใน public/school/)
 const schoolPhotos = [
   { src: "/school/1.jpg", caption: "คำอธิบายรูปที่ 1" },
@@ -83,7 +117,6 @@ export default function About() {
 
       <main className="relative mx-auto max-w-5xl px-8 pb-24 pt-36">
         <div className="flex flex-col items-start gap-8 sm:flex-row sm:gap-14 lg:gap-16">
-          {/* รูปโปรไฟล์ มุมบนซ้าย (ปรับขนาดที่ w-48 / sm:w-60 / lg:w-72) */}
           <div
             className="photo-frame w-48 shrink-0 sm:w-60 lg:w-72"
             style={{
@@ -141,7 +174,6 @@ export default function About() {
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex min-w-0 items-start gap-4">
-                      {/* โลโก้สถาบัน: plate=true ใส่พื้นขาวให้โลโก้สีเข้มอ่านได้บนธีมมืด */}
                       <div
                         className={`relative h-16 w-16 shrink-0 sm:h-20 sm:w-20 ${
                           e.logo.plate
@@ -166,7 +198,6 @@ export default function About() {
                         <p className="mt-1 text-sm text-[#F8FAFC]/70">
                           {e.major}
                         </p>
-                        {/* กรอบ GPA */}
                         <span className="mt-2.5 inline-flex items-center gap-2 rounded-lg border border-[#8B5CF6]/60 bg-[#8B5CF6]/10 px-3 py-1 shadow-[0_0_14px_rgba(139,92,246,0.25)]">
                           <span className="text-[11px] font-semibold uppercase tracking-widest text-[#F8FAFC]/60">
                             GPA
@@ -193,7 +224,13 @@ export default function About() {
               </SpotlightCard>
             ))}
 
-            {/* รูปเคลื่อนที่ใต้การ์ดโรงเรียน */}
+            {/* เกียรติบัตรช่วงมหาวิทยาลัย (อยู่บน) */}
+            <h3 className="pt-8 text-xl font-bold">
+              <span className="grad-text">เกียรติบัตรช่วงมหาวิทยาลัย</span>
+            </h3>
+            <ImageMarquee items={univPhotos} reverse />
+
+            {/* เกียรติบัตรช่วงมัธยมปลาย (อยู่ล่าง) */}
             <h3 className="pt-8 text-xl font-bold">
               <span className="grad-text">เกียรติบัตรช่วงมัธยมปลาย</span>
             </h3>

@@ -8,12 +8,14 @@ type Item = { src: string; title?: string; caption: string };
 export default function ImageMarquee({
   items,
   duration = 80,
+  reverse = false,
 }: {
   items: Item[];
   duration?: number; // วินาทีต่อ 1 รอบ (ยิ่งมากยิ่งช้า)
+  reverse?: boolean; // true = วิ่งสวนทาง
 }) {
   const [paused, setPaused] = useState(false);
-  const loop = [...items, ...items]; // ซ้ำ 2 ชุดเพื่อให้วนต่อเนื่องไม่มีช่องว่าง
+  const loop = [...items, ...items];
 
   const hold = () => setPaused(true);
   const release = () => setPaused(false);
@@ -37,6 +39,7 @@ export default function ImageMarquee({
           className="marquee-track flex w-max"
           style={{
             animationDuration: `${duration}s`,
+            animationDirection: reverse ? "reverse" : "normal",
             animationPlayState: paused ? "paused" : "running",
           }}
         >
@@ -57,7 +60,6 @@ export default function ImageMarquee({
                 />
               </div>
 
-              {/* คำอธิบายใต้รูป: ขึ้นเมื่อเมาส์ชี้รูปนั้น (จองที่ไว้ ไม่ให้เลย์เอาต์กระตุก) */}
               <figcaption className="mt-3 flex min-h-[4.5rem] -translate-y-1 items-start gap-2 px-1 text-sm leading-relaxed opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-[#a78bfa] to-[#3B82F6]" />
                 <span>
