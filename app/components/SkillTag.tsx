@@ -3,12 +3,12 @@
 import { useRef } from "react";
 import type { ReactNode } from "react";
 
-// เด้งขึ้น → เด้งลง → เด้งเบาๆ → กลับที่เดิม
+// เด้งขึ้น → เด้งลง → เด้งเบาๆ → กลับที่เดิม (ความสูงจำกัดไว้ให้อยู่ในกรอบป้าย)
 const BOUNCE: Keyframe[] = [
   { transform: "translateY(0) scale(1)" },
-  { transform: "translateY(-7px) scale(1.25)", offset: 0.35 },
-  { transform: "translateY(0) scale(0.9)", offset: 0.65 },
-  { transform: "translateY(-2px) scale(1.05)", offset: 0.85 },
+  { transform: "translateY(-5px) scale(1.25)", offset: 0.3 },
+  { transform: "translateY(1px) scale(0.9)", offset: 0.6 },
+  { transform: "translateY(-2px) scale(1.1)", offset: 0.8 },
   { transform: "translateY(0) scale(1)" },
 ];
 
@@ -24,7 +24,7 @@ export default function SkillTag({ children }: { children: ReactNode }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const icon = ref.current?.querySelector<HTMLElement | SVGElement>(".skill-icon");
     icon?.animate(BOUNCE, {
-      duration: 550,
+      duration: 600,
       easing: "cubic-bezier(0.28, 0.84, 0.42, 1)",
     });
   };
@@ -41,7 +41,7 @@ export default function SkillTag({ children }: { children: ReactNode }) {
           bounce();
         }
       }}
-      className="group/tag inline-flex cursor-pointer select-none items-center gap-2 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-sm text-[#F8FAFC]/90 outline-none transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#a78bfa] hover:bg-[#8B5CF6]/20 hover:text-white hover:shadow-[0_8px_22px_-8px_rgba(139,92,246,0.7)] focus-visible:border-[#a78bfa]"
+      className="group/tag inline-flex cursor-pointer overflow-hidden active:scale-95 select-none items-center gap-2 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-sm text-[#F8FAFC]/90 outline-none transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#a78bfa] hover:bg-[#8B5CF6]/20 hover:text-white hover:shadow-[0_8px_22px_-8px_rgba(139,92,246,0.7)] focus-visible:border-[#a78bfa]"
     >
       {children}
     </span>
