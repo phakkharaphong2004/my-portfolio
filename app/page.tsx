@@ -17,6 +17,8 @@ import {
   Users,
   Network,
   Palette,
+  Cpu,
+  Wifi,
 } from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
 import ContactSection from "./components/ContactSection";
@@ -87,6 +89,13 @@ const skillGroups: {
         items: [
           { name: "Python", icon: FaPython, color: "#4B8BBE" },
           { name: "Node.js (Basic)", icon: FaNodeJs, color: "#68A063" },
+        ],
+      },
+      {
+        label: "Hardware / IoT",
+        items: [
+          { name: "ESP32", icon: Cpu, color: L },
+          { name: "MQTT", icon: Wifi, color: L },
         ],
       },
       {
@@ -295,10 +304,10 @@ export default function Home() {
 
       {/* ทักษะ */}
       <section className="relative mx-auto mt-24 max-w-6xl px-6">
-        <h2 className="text-center text-4xl font-extrabold">
+        <h2 className="text-center text-3xl font-extrabold sm:text-4xl">
           <span className="grad-text">ทักษะของฉัน</span>
         </h2>
-        <p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
+        <p className="mb-10 mt-2 text-center text-[#F8FAFC]/75">
           เครื่องมือและความรู้ที่ใช้ในการออกแบบและพัฒนา
         </p>
 
@@ -311,7 +320,7 @@ export default function Home() {
               <div className="space-y-5">
                 {g.rows.map((r) => (
                   <div key={r.label}>
-                    <p className="mb-2 text-xs uppercase tracking-widest text-[#F8FAFC]/40">
+                    <p className="mb-2 text-xs uppercase tracking-widest text-[#F8FAFC]/60">
                       {r.label}
                     </p>
                     <div className="flex flex-wrap gap-2">
