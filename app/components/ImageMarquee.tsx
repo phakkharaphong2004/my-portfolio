@@ -19,14 +19,14 @@ export default function ImageMarquee({
   const release = () => setPaused(false);
 
   return (
-    <div>
+    <div className="relative left-1/2 w-screen -translate-x-1/2">
       <div
         className="marquee-wrap cursor-grab touch-pan-y select-none overflow-hidden py-4 active:cursor-grabbing"
         style={{
           WebkitMaskImage:
-            "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)",
+            "linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)",
           maskImage:
-            "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)",
+            "linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)",
         }}
         onPointerDown={hold}
         onPointerUp={release}
@@ -49,7 +49,7 @@ export default function ImageMarquee({
               <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
                 <Image
                   src={item.src}
-                    alt={item.title ?? item.caption}
+                  alt={item.title ?? item.caption}
                   width={640}
                   height={427}
                   draggable={false}
@@ -58,9 +58,9 @@ export default function ImageMarquee({
               </div>
 
               {/* คำอธิบายใต้รูป: ขึ้นเมื่อเมาส์ชี้รูปนั้น (จองที่ไว้ ไม่ให้เลย์เอาต์กระตุก) */}
-              <figcaption className="mt-3 flex min-h-[4.5rem] -translate-y-1 items-start gap-2 px-1 text-sm leading-relaxed text-[#F8FAFC] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+              <figcaption className="mt-3 flex min-h-[4.5rem] -translate-y-1 items-start gap-2 px-1 text-sm leading-relaxed opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-[#a78bfa] to-[#3B82F6]" />
-                                <span>
+                <span>
                   {item.title && (
                     <strong className="block font-semibold text-[#F8FAFC]">
                       {item.title}
