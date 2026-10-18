@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, X, FileText, PlayCircle } from "lucide-react";
 import { SpotlightCard } from "./ui/spotlight-card";
 import { tagIcons, fallbackTag } from "../data/tagIcons";
 import type { Project } from "../data/projects";
@@ -171,7 +171,36 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                   ))}
                 </div>
               )}
-
+                            {active.links && active.links.length > 0 && (
+                <>
+                  <h3 className="mt-6 text-sm font-bold uppercase tracking-widest text-[#F8FAFC]/60">
+                    เอกสารและวิดีโอ
+                  </h3>
+                  <div className="mt-3 space-y-2">
+                    {active.links.map((l) => (
+                      <a
+                        key={l.url}
+                        href={l.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex items-center gap-3 rounded-xl border border-[#202530] bg-[#0B0D12]/60 px-4 py-3 text-sm transition hover:border-[#8B5CF6]/60 hover:bg-[#8B5CF6]/10"
+                      >
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#3B82F6] text-white">
+                          {l.type === "video" ? (
+                            <PlayCircle className="h-5 w-5" />
+                          ) : (
+                            <FileText className="h-5 w-5" />
+                          )}
+                        </span>
+                        <span className="min-w-0 flex-1 font-medium">
+                          {l.label}
+                        </span>
+                        <ArrowUpRight className="h-4 w-4 shrink-0 text-[#F8FAFC]/40 transition group-hover:text-[#a78bfa]" />
+                      </a>
+                    ))}
+                  </div>
+                </>
+              )}
               <div className="mt-6">
                 <Tags tags={active.tags} />
               </div>
