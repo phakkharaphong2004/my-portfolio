@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type Item = { src: string; caption: string };
+type Item = { src: string; title?: string; caption: string };
 
 export default function ImageMarquee({
   items,
@@ -49,7 +49,7 @@ export default function ImageMarquee({
               <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
                 <Image
                   src={item.src}
-                  alt={item.caption}
+                    alt={item.title ?? item.caption}
                   width={640}
                   height={427}
                   draggable={false}
@@ -58,9 +58,16 @@ export default function ImageMarquee({
               </div>
 
               {/* คำอธิบายใต้รูป: ขึ้นเมื่อเมาส์ชี้รูปนั้น (จองที่ไว้ ไม่ให้เลย์เอาต์กระตุก) */}
-              <figcaption className="mt-3 flex min-h-[2.75rem] -translate-y-1 items-start gap-2 px-1 text-sm leading-relaxed text-[#F8FAFC] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+              <figcaption className="mt-3 flex min-h-[4.5rem] -translate-y-1 items-start gap-2 px-1 text-sm leading-relaxed text-[#F8FAFC] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-[#a78bfa] to-[#3B82F6]" />
-                <span>{item.caption}</span>
+                                <span>
+                  {item.title && (
+                    <strong className="block font-semibold text-[#F8FAFC]">
+                      {item.title}
+                    </strong>
+                  )}
+                  <span className="text-[#F8FAFC]/70">{item.caption}</span>
+                </span>
               </figcaption>
             </figure>
           ))}
