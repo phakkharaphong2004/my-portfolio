@@ -39,7 +39,14 @@ const schoolPhotos = [
 
 export default function About() {
   return (
-    <main className="mx-auto max-w-5xl px-8 pb-16 pt-36">
+        <div className="relative min-h-screen overflow-hidden bg-[#0B0D12] text-[#F8FAFC]">
+      {/* พื้นหลังเรืองแสง */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-[#8B5CF6]/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-40 top-[520px] h-[420px] w-[420px] rounded-full bg-[#3B82F6]/15 blur-[120px]" />
+      <div className="pointer-events-none absolute -left-40 top-[1100px] h-[420px] w-[420px] rounded-full bg-[#8B5CF6]/10 blur-[120px]" />
+      <div className="dot-grid pointer-events-none absolute inset-0 h-[900px]" />
+
+      <main className="relative mx-auto max-w-5xl px-8 pb-24 pt-36">
       <div className="flex flex-col items-start gap-8 sm:flex-row sm:gap-14 lg:gap-16">
         {/* รูปโปรไฟล์ มุมบนซ้าย (ปรับขนาดที่ w-48 / sm:w-60 / lg:w-72) */}
         <div
@@ -119,5 +126,6 @@ export default function About() {
         </div>
       </section>
     </main>
+    </div>
   );
 }
