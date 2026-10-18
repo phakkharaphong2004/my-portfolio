@@ -33,6 +33,12 @@ export const projects: Project[] = [
       "ทำงานร่วมกับทีม Front-end อย่างใกล้ชิดเพื่อให้การพัฒนาตรงตามดีไซน์ที่ออกแบบไว้",
     ],
     tags: ["Figma", "Canva", "Wireframe", "Prototype", "User Flow"],
+     gallery: [
+      "/projects/spufood-1.jpg",
+      "/projects/spufood-2.jpg",
+      "/projects/spufood-3.jpg",
+    ],
+    
   },
   {
     title: "Lab-Monitoring",
@@ -46,6 +52,11 @@ export const projects: Project[] = [
       "ออกแบบและพัฒนา Front-end ของแอปพลิเคชันคู่ใจให้แสดงข้อมูลล่าสุดและควบคุมเครื่องปรับอากาศอัตโนมัติ ได้ประสบการณ์ด้าน data visualization ที่เข้าใจง่าย",
     ],
     tags: ["Raspberry Pi 5", "Python", "AQI", "Database", "Data Visualization"],
+    gallery: [
+      "/projects/lab-1.jpg",
+      "/projects/lab-2.jpg",
+      "/projects/lab-3.jpg",
+    ],
      links: [
       {
         label: "เอกสารโครงการ (IOT Environment Monitoring System)",
@@ -76,5 +87,10 @@ export const projects: Project[] = [
       "พัฒนาระบบ Back-end เก็บข้อมูลเซนเซอร์ พร้อมระบบแจ้งเตือนอัตโนมัติผ่าน Discord Webhook API เมื่อพบค่าผิดปกติ",
     ],
     tags: ["Full-Stack", "IoT", "Sensor", "Discord Webhook API"],
+    gallery: [
+      "/projects/water-1.jpg",
+      "/projects/water-2.jpg",
+      "/projects/water-3.jpg",
+    ],
   },
 ];

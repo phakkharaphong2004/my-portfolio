@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ArrowUpRight, FileText, PlayCircle } from "lucide-react";
 import { SpotlightCard } from "./ui/spotlight-card";
+import ImageSlider from "./ImageSlider";
 import { tagIcons, fallbackTag } from "../data/tagIcons";
 import type { Project } from "../data/projects";
 
@@ -23,38 +23,27 @@ function Tags({ tags }: { tags: string[] }) {
   );
 }
 
-function Cover({ p }: { p: Project }) {
-  return (
-    <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-[#202530] bg-[#12141d]">
-      {p.image ? (
-        <Image
-          src={p.image}
-          alt={p.title}
-          fill
-          sizes="(min-width: 640px) 50vw, 100vw"
-          className="object-cover"
-        />
-      ) : (
-        <div className="flex h-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#8B5CF6]/10 to-[#3B82F6]/5">
-          <span className="h-8 w-8 animate-spin rounded-full border-[3px] border-[#8B5CF6]/25 border-t-[#a78bfa]" />
-          <span className="text-sm text-[#F8FAFC]/60">รออัปเดตภาพ</span>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function ProjectGrid({ projects }: { projects: Project[] }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
-      {projects.map((p) => (
-        <SpotlightCard key={p.title} className="h-full">
-          <div className="flex h-full flex-col">
-            <Cover p={p} />
+    <div className="space-y-8">
+      {projects.map((p, idx) => (
+        <SpotlightCard key={p.title}>
+          <div
+            className={`flex flex-col md:flex-row ${
+              idx % 2 === 1 ? "md:flex-row-reverse" : ""
+            }`}
+          >
+            {/* รูปเลื่อน */}
+            <div className="md:w-1/2">
+              <ImageSlider images={p.gallery ?? []} alt={p.title} />
+            </div>
 
-            <div className="flex flex-1 flex-col p-6">
+            {/* ข้อมูล */}
+            <div className="flex flex-col p-6 md:w-1/2 md:p-8">
               <div className="flex items-start justify-between gap-3">
-                <h2 className="text-xl font-bold">{p.title}</h2>
+                <h2 className="text-2xl font-extrabold">
+                  <span className="grad-text">{p.title}</span>
+                </h2>
                 <span className="shrink-0 text-sm text-[#F8FAFC]/50">
                   {p.year}
                 </span>
@@ -85,25 +74,6 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                     <li key={h}>{h}</li>
                   ))}
                 </ul>
-              )}
-
-              {p.gallery && p.gallery.length > 0 && (
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  {p.gallery.map((g) => (
-                    <div
-                      key={g}
-                      className="relative aspect-[16/10] overflow-hidden rounded-lg border border-[#202530]"
-                    >
-                      <Image
-                        src={g}
-                        alt={p.title}
-                        fill
-                        sizes="320px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
               )}
 
               {p.links && p.links.length > 0 && (
