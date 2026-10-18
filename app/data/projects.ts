@@ -53,9 +53,9 @@ export const projects: Project[] = [
     ],
     tags: ["Raspberry Pi 5", "Python", "AQI", "Database", "Data Visualization"],
     gallery: [
-      "/projects/lab-1.jpg",
-      "/projects/lab-2.jpg",
-      "/projects/lab-3.jpg",
+      "/projects/LM.1.png",
+      "/projects/LM.2.png",
+      "/projects/LM.3.png",
     ],
      links: [
       {
