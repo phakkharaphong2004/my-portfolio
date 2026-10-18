@@ -193,3 +193,17 @@ body {
   .marquee-track { animation: none; }
   .marquee-wrap { overflow-x: auto; }
 }
+/* กดสกิล: ไอคอนเด้งขึ้น → เด้งลง → กลับที่เดิม */
+@keyframes icon-bounce {
+  0%   { transform: translateY(0) scale(1); }
+  35%  { transform: translateY(-7px) scale(1.25); }
+  65%  { transform: translateY(0) scale(0.9); }
+  85%  { transform: translateY(-2px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+.skill-tag.is-bounce .skill-icon {
+  animation: icon-bounce 0.55s cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-tag.is-bounce .skill-icon { animation: none; }
+}
