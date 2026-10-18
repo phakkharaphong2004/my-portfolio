@@ -19,6 +19,7 @@ import {
   Palette,
   Cpu,
   Wifi,
+  Download,
 } from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
 import ContactSection from "./components/ContactSection";
@@ -170,7 +171,7 @@ export default function Home() {
             {INTRO}
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+          <div className="mt-8 flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
             <Link
               href="/projects"
               className="rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-8 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.45)] transition hover:scale-105"
@@ -182,6 +183,15 @@ export default function Home() {
               className="glass rounded-full px-8 py-3.5 font-semibold transition hover:scale-105 hover:border-[#3B82F6]"
             >
               ติดต่อฉัน
+            </a>
+            {/* ปุ่มดาวน์โหลด CV (ไฟล์อยู่ที่ public/CV-Phakkharaphong.pdf) */}
+            <a
+              href="/CV-Phakkharaphong.pdf"
+              download="CV-Phakkharaphong-Sarang-ngam.pdf"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/60 bg-[#8B5CF6]/10 px-8 py-3.5 font-semibold shadow-[0_0_24px_rgba(139,92,246,0.25)] transition hover:scale-105 hover:bg-[#8B5CF6]/20"
+            >
+              <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+              ดาวน์โหลด CV
             </a>
           </div>
         </div>
