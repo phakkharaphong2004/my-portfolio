@@ -23,7 +23,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
-    const [hidden, setHidden] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [inView, setInView] = useState<string | null>(null)
 
   useEffect(() => {
@@ -55,7 +55,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   }, [items, pathname])
 
   if (!mounted) return null
-    const anchorItem = items.find((i) => i.url.split("#")[1] === inView)
+
+  const anchorItem = items.find((i) => i.url.split("#")[1] === inView)
   const activeTab =
     (pathname === "/" && anchorItem?.name) ||
     items.find((i) => {
