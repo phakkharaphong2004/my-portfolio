@@ -41,8 +41,8 @@ const education = [
 const univPhotos = [
   {
     src: "/univ/1.1.jpg",
-    title: "ชื่อเกียรติบัตรที่ 1",
-    caption: "คำอธิบายสั้น ๆ",
+    title: "AWS Academy",
+    caption: "หลักสูตร Machine Learning Foundations ผ่านการอบรมรวม 20 ชั่วโมง ได้เรียนรู้พื้นฐานด้าน Machine Learning และการประยุกต์ใช้ AI ซึ่งเป็นทักษะที่สามารถต่อยอดในการพัฒนาโปรเจกต์ด้านเทคโนโลยีได้",
   },
   {
     src: "/univ/1.2.jpg",
