@@ -122,6 +122,9 @@ export default function About() {
           ))}
 
           {/* รูปเคลื่อนที่ใต้การ์ดโรงเรียน */}
+                    <h3 className="pt-8 text-xl font-bold">
+            <span className="grad-text">เกียรติบัตรช่วงมัธยมปลาย</span>
+          </h3>
           <ImageMarquee items={schoolPhotos} />
         </div>
       </section>
