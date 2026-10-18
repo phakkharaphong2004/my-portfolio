@@ -1,7 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { ComponentType, CSSProperties } from "react";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaPython,
+  FaNodeJs,
+  FaFigma,
+} from "react-icons/fa";
+import { SiCanvas, SiCplusplus } from "react-icons/si";
+import {
+  PenTool,
+  MousePointerClick,
+  Workflow,
+  Users,
+  Network,
+  Palette,
+} from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
 import ContactSection from "./components/ContactSection";
+
+type SkillIcon = ComponentType<{ className?: string; style?: CSSProperties }>;
+type SkillItem = { name: string; icon: SkillIcon; color: string };
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "Phakkharaphong Sarang-ngam";
@@ -14,38 +35,71 @@ const skills = [
   { icon: "BE", title: "Backend", desc: "Node.js · REST API · SQL" },
   { icon: "IoT", title: "IoT & Mobile", desc: "ESP32 · MQTT · React Native" },
 ];
-const skillGroups = [
+
+// แก้ตรงนี้: สกิลแยกเป็นกลุ่ม (แต่ละรายการ = 1 ป้าย พร้อมไอคอน)
+const L = "#a78bfa"; // สีไอคอนทั่วไป
+
+const skillGroups: {
+  title: string;
+  rows: { label: string; items: SkillItem[] }[];
+}[] = [
   {
     title: "UX/UI & Design",
     rows: [
-      { label: "Design Tools", items: ["Figma", "Canva"] },
+      {
+        label: "Design Tools",
+        items: [
+          { name: "Figma", icon: FaFigma, color: "#F24E1E" },
+          { name: "Canva", icon: SiCanvas, color: "#00C4CC" },
+        ],
+      },
       {
         label: "Design Process",
         items: [
-          "Wireframing",
-          "Prototyping",
-          "User Flow (Basic)",
-          "Usability Principles (Basic)",
+          { name: "Wireframing", icon: PenTool, color: L },
+          { name: "Prototyping", icon: MousePointerClick, color: L },
+          { name: "User Flow (Basic)", icon: Workflow, color: L },
+          { name: "Usability Principles (Basic)", icon: Users, color: L },
         ],
       },
       {
         label: "Analysis",
-        items: ["System Analysis (Basic)", "UX/UI Design (Basic)"],
+        items: [
+          { name: "System Analysis (Basic)", icon: Network, color: L },
+          { name: "UX/UI Design (Basic)", icon: Palette, color: L },
+        ],
       },
     ],
   },
   {
     title: "Technical Skills",
     rows: [
-      { label: "Front-end", items: ["HTML", "CSS", "JavaScript (Basic)"] },
-      { label: "Back-end", items: ["Python", "Node.js (Basic)"] },
+      {
+        label: "Front-end",
+        items: [
+          { name: "HTML", icon: FaHtml5, color: "#E34F26" },
+          { name: "CSS", icon: FaCss3Alt, color: "#2D9CDB" },
+          { name: "JavaScript (Basic)", icon: FaJs, color: "#F7DF1E" },
+        ],
+      },
+      {
+        label: "Back-end",
+        items: [
+          { name: "Python", icon: FaPython, color: "#4B8BBE" },
+          { name: "Node.js (Basic)", icon: FaNodeJs, color: "#68A063" },
+        ],
+      },
       {
         label: "Programming Fundamentals",
-        items: ["C/C++", "Python"],
+        items: [
+          { name: "C/C++", icon: SiCplusplus, color: "#659AD2" },
+          { name: "Python", icon: FaPython, color: "#4B8BBE" },
+        ],
       },
     ],
   },
 ];
+
 const code = [
   { t: "function Developer() {", c: "text-[#a78bfa]" },
   { t: "  return (", c: "text-[#F8FAFC]/60" },
@@ -237,7 +291,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-            </section>
+      </section>
 
       {/* ทักษะ */}
       <section className="relative mx-auto mt-24 max-w-6xl px-6">
@@ -261,14 +315,21 @@ export default function Home() {
                       {r.label}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {r.items.map((s) => (
-                        <span
-                          key={s}
-                          className="rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-sm text-[#F8FAFC]/90 transition hover:border-[#8B5CF6] hover:bg-[#8B5CF6]/20"
-                        >
-                          {s}
-                        </span>
-                      ))}
+                      {r.items.map((s) => {
+                        const Icon = s.icon;
+                        return (
+                          <span
+                            key={s.name}
+                            className="inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-sm text-[#F8FAFC]/90 transition hover:-translate-y-0.5 hover:border-[#8B5CF6] hover:bg-[#8B5CF6]/20"
+                          >
+                            <Icon
+                              className="h-4 w-4 shrink-0"
+                              style={{ color: s.color }}
+                            />
+                            {s.name}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
