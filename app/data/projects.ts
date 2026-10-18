@@ -1,3 +1,9 @@
+export type ProjectLink = {
+  label: string;
+  url: string;
+  type: "video" | "pdf" | "link";
+};
+
 export type Project = {
   title: string;
   year: string;
@@ -5,8 +11,11 @@ export type Project = {
   description: string;
   role?: string;
   highlights?: string[];
+  details?: string;
+  gallery?: string[];
+  links?: ProjectLink[];
   tags: string[];
-  image?: string; // เช่น "/projects/spufood.jpg" ถ้าไม่มีจะแสดงช่อง "รออัปเดต"
+  image?: string;
   github?: string;
   demo?: string;
 };
@@ -37,6 +46,24 @@ export const projects: Project[] = [
       "ออกแบบและพัฒนา Front-end ของแอปพลิเคชันคู่ใจให้แสดงข้อมูลล่าสุดและควบคุมเครื่องปรับอากาศอัตโนมัติ ได้ประสบการณ์ด้าน data visualization ที่เข้าใจง่าย",
     ],
     tags: ["Raspberry Pi 5", "Python", "AQI", "Database", "Data Visualization"],
+     links: [
+      {
+        label: "เอกสารโครงการ (IOT Environment Monitoring System)",
+        url: "https://drive.google.com/file/d/16PCgEG_Potaj-pZPpJXq0j57KJ_WWsfK/view?usp=drive_link",
+        type: "pdf",
+      },
+      {
+        label: "วิดีโอสาธิตระบบ 1",
+        url: "https://drive.google.com/file/d/1dpW-qLx5E0oBsnKzsjoEsRGqQRMbVvBZ/view?usp=sharing",
+        type: "video",
+      },
+      {
+        label: "วิดีโอสาธิตระบบ 2 (Screen Recording)",
+        url: "https://drive.google.com/file/d/1SWs4u7N8c8oZhUw_lHMQ_ZjY53TRv-io/view?usp=drive_link",
+        type: "video",
+      },
+    ],
+    
   },
   {
     title: "Smart Water",
