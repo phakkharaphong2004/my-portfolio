@@ -7,7 +7,7 @@ type Item = { src: string; caption: string };
 
 export default function ImageMarquee({
   items,
-  duration = 40,
+  duration = 80,
 }: {
   items: Item[];
   duration?: number; // วินาทีต่อ 1 รอบ (ยิ่งมากยิ่งช้า)
@@ -21,7 +21,7 @@ export default function ImageMarquee({
   return (
     <div>
       <div
-        className="marquee-wrap touch-pan-y select-none overflow-hidden"
+        className="marquee-wrap cursor-grab touch-pan-y select-none overflow-hidden py-4 active:cursor-grabbing"
         style={{
           WebkitMaskImage:
             "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)",
@@ -43,20 +43,20 @@ export default function ImageMarquee({
           {loop.map((item, i) => (
             <figure
               key={i}
-              className="mr-5 w-64 shrink-0 sm:w-72"
+              className="group mr-8 w-72 shrink-0 transition-transform duration-300 hover:-translate-y-3 sm:w-80"
               aria-hidden={i >= items.length}
             >
-              <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d]">
+              <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
                 <Image
                   src={item.src}
                   alt={item.caption}
-                  width={576}
-                  height={384}
+                  width={640}
+                  height={427}
                   draggable={false}
                   className="aspect-[3/2] w-full object-cover"
                 />
               </div>
-              <figcaption className="mt-2 text-center text-xs leading-relaxed text-[#F8FAFC]/60">
+              <figcaption className="mt-3 px-1 text-sm leading-relaxed text-[#F8FAFC]/60 transition-colors group-hover:text-[#F8FAFC]">
                 {item.caption}
               </figcaption>
             </figure>

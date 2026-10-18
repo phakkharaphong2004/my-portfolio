@@ -182,11 +182,11 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 .marquee-track {
-  animation: marquee 40s linear infinite;
+  animation: marquee 80s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
