@@ -15,9 +15,7 @@ export default function Projects() {
         <h1 className="mt-3 text-3xl font-extrabold sm:text-4xl">
           <span className="grad-text">ผลงานของฉัน</span>
         </h1>
-        <p className="mb-10 mt-2 text-[#F8FAFC]/60">
-          โปรเจกต์ที่ได้ลงมือทำ ทั้งเว็บ แอป และระบบ IoT · คลิกการ์ดเพื่อดูรายละเอียด
-        </p>
+      
 
         <ProjectGrid projects={projects} />
       </main>
