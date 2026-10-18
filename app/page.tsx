@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
+import { SpotlightCard } from "./components/ui/spotlight-card";
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "Phakkharaphong Sarang-ngam";
@@ -49,28 +50,32 @@ const contacts = [
     value: "phakkharaphongsaranggam@email.com",
     href: "mailto:phakkharaphongsaranggam@email.com",
     tile: "bg-gradient-to-br from-[#8B5CF6] to-[#3B82F6] text-white",
-    icon: <Mail className="h-6 w-6" />,
+    icon: <Mail className="h-5 w-5" />,
+    glow: "rgba(139, 92, 246, 0.3)",
   },
   {
     label: "Line",
     value: "phakkharaphong2004",
     href: "https://line.me/ti/p/~phakkharaphong2004",
     tile: "",
-    icon: <LineIcon className="h-12 w-12 rounded-xl" />,
+    icon: <LineIcon className="h-10 w-10 rounded-xl" />,
+    glow: "rgba(6, 199, 85, 0.25)",
   },
   {
     label: "GitHub",
     value: "phakkharaphong2004",
     href: "https://github.com/phakkharaphong2004",
     tile: "bg-white text-[#0B0D12]",
-    icon: <GithubIcon className="h-6 w-6" />,
+    icon: <GithubIcon className="h-5 w-5" />,
+    glow: "rgba(248, 250, 252, 0.2)",
   },
   {
     label: "Phone",
     value: "065-320-4366",
     href: "tel:0653204366",
     tile: "bg-gradient-to-br from-[#22c55e] to-[#16a34a] text-white",
-    icon: <Phone className="h-6 w-6" />,
+    icon: <Phone className="h-5 w-5" />,
+    glow: "rgba(34, 197, 94, 0.25)",
   },
 ];
 
@@ -276,7 +281,7 @@ export default function Home() {
       {/* ติดต่อ */}
       <section
         id="contact"
-        className="relative mx-auto max-w-4xl scroll-mt-24 px-6 py-24"
+        className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
       >
         <h2 className="text-center text-4xl font-extrabold">
           <span className="grad-text">ติดต่อฉัน</span>
@@ -284,30 +289,32 @@ export default function Home() {
         <p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
           สนใจร่วมงานหรืออยากคุยเรื่องโปรเจกต์ ติดต่อได้ตามช่องทางนี้
         </p>
-        <div className="grid gap-5 sm:grid-cols-2">
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {contacts.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel="noreferrer"
-              className="glow-card group flex items-center gap-4 p-5 sm:p-6"
-            >
-              <span
-                className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${c.tile}`}
+            <SpotlightCard key={c.label} className="h-full" spotlightColor={c.glow}>
+              <a
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                className="group flex h-full flex-col gap-4 outline-none"
               >
-                {c.icon}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm text-[#F8FAFC]/50">
-                  {c.label}
-                </span>
-                <span className="block break-all text-base font-semibold sm:text-lg">
-                  {c.value}
-                </span>
-              </span>
-              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#F8FAFC]/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#a78bfa]" />
-            </a>
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`grid h-10 w-10 place-items-center rounded-xl ${c.tile}`}
+                  >
+                    {c.icon}
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-[#F8FAFC]/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#a78bfa]" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs text-[#F8FAFC]/50">{c.label}</p>
+                  <p className="mt-0.5 break-all text-sm font-semibold">
+                    {c.value}
+                  </p>
+                </div>
+              </a>
+            </SpotlightCard>
           ))}
         </div>
 
