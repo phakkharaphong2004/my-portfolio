@@ -40,7 +40,7 @@ const education = [
 // แก้ตรงนี้: เกียรติบัตรช่วงมหาวิทยาลัย (ไฟล์อยู่ใน public/univ/)
 const univPhotos = [
   {
-    src: "/univ/AWS_Academy_Graduate___Machine_Learning_Foundations___Training_Badge_Badge20261018-21-v5r0hc.pdf",
+    src: "/univ/1.1.jpg",
     title: "ชื่อเกียรติบัตรที่ 1",
     caption: "คำอธิบายสั้น ๆ",
   },
