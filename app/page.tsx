@@ -186,8 +186,8 @@ export default function Home() {
             </a>
             {/* ปุ่มดาวน์โหลด CV (ไฟล์อยู่ที่ public/CV-Phakkharaphong.pdf) */}
             <a
-              href="/Phakkharaphong_Sarang-ngam_CV.pdf"
-              download="Phakkharaphong_Sarang-ngam_CV.pdf"
+              href="/CV-Phakkharaphong-fixed.pdf"
+              download="CV-Phakkharaphong-fixed.pdf"
               className="group inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/60 bg-[#8B5CF6]/10 px-8 py-3.5 font-semibold shadow-[0_0_24px_rgba(139,92,246,0.25)] transition hover:scale-105 hover:bg-[#8B5CF6]/20"
             >
               <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
