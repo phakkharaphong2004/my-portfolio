@@ -3,26 +3,45 @@ import Image from "next/image";
 // แก้ตรงนี้: ข้อมูลการศึกษา
 const education = [
   {
-    school: "Sripatum University (SPU) / มหาวิทยาลัยศรีปทุม",
-    period: "กันยายน 2023 – ปัจจุบัน",
-    detail:
-      "นักศึกษาวิศวกรรมคอมพิวเตอร์ปี 4 (GPA 3.59) มีประสบการณ์จากโปรเจกต์วิชาการหลากหลายด้าน ทั้ง Software Development, Hardware/IoT, System Analysis และ UX/UI Design ผ่านกระบวนการพัฒนาซอฟต์แวร์ครบวงจร ตั้งแต่วางแผน ออกแบบ พัฒนา ทดสอบ จนถึง deployment มุ่งมั่นสร้างสรรค์ผลิตภัณฑ์ดิจิทัลที่เน้นผู้ใช้เป็นศูนย์กลาง พร้อมพัฒนาทักษะทั้งด้านเทคนิคและการออกแบบอย่างต่อเนื่อง",
+    school: "Sripatum University (SPU) · มหาวิทยาลัยศรีปทุม",
+    major: "สาขาวิศวกรรมคอมพิวเตอร์ (ชั้นปีที่ 4)",
+    gpa: "GPA 3.59",
+    period: "ก.ย. 2023 – ปัจจุบัน",
+    points: [
+      "โปรเจกต์วิชาการหลายด้าน: Software Development, Hardware/IoT, System Analysis, UX/UI Design",
+      "ผ่านกระบวนการพัฒนาครบวงจร ตั้งแต่วางแผน ออกแบบ พัฒนา ทดสอบ จนถึง deployment",
+      "มุ่งสร้างผลิตภัณฑ์ดิจิทัลที่เน้นผู้ใช้เป็นศูนย์กลาง",
+    ],
   },
   {
-    school: "Kandongpittayakhom School / โรงเรียนแคนดงพิทยาคม",
-    period: "พฤษภาคม 2020 – มีนาคม 2023",
-    detail:
-      "จบมัธยมปลายสายวิทย์-คณิต GPA 3.81 เป็นตัวแทนโรงเรียนแข่งขันด้านวิทยาศาสตร์ (Science Intelligence Competition) แสดงให้เห็นถึงทักษะการคิดวิเคราะห์ การแก้ปัญหา และความสนใจในสายวิทยาศาสตร์และเทคโนโลยี",
+    school: "Kandongpittayakhom School · โรงเรียนแคนดงพิทยาคม",
+    major: "มัธยมปลาย สายวิทย์-คณิต",
+    gpa: "GPA 3.81",
+    period: "พ.ค. 2020 – มี.ค. 2023",
+    points: [
+      "ตัวแทนโรงเรียนแข่งขันด้านวิทยาศาสตร์ (Science Intelligence Competition)",
+      "แสดงถึงทักษะการคิดวิเคราะห์ การแก้ปัญหา และความสนใจด้านวิทยาศาสตร์และเทคโนโลยี",
+    ],
   },
 ];
 
 export default function About() {
   return (
     <main className="mx-auto max-w-5xl px-8 pb-16 pt-36">
-      <div className="flex flex-col items-start gap-8 sm:flex-row sm:gap-10">
+      <div className="flex flex-col items-start gap-8 sm:flex-row sm:gap-14 lg:gap-16">
         {/* รูปโปรไฟล์ มุมบนซ้าย (ปรับขนาดที่ w-48 / sm:w-60 / lg:w-72) */}
-        <div className="photo-frame w-48 shrink-0 sm:w-60 lg:w-72" style={{ animation: "none" }}>
-          <div className="photo-inner aspect-[4/5]">
+        <div
+          className="photo-frame w-48 shrink-0 sm:w-60 lg:w-72"
+          style={{
+            animation: "none",
+            padding: 2,
+            boxShadow: "0 0 18px rgba(139, 92, 246, 0.12)",
+          }}
+        >
+          <div
+            className="photo-inner aspect-[4/5]"
+            style={{ background: "#12141d" }}
+          >
             <Image
               src="/profile.webp"
               alt="รูปโปรไฟล์"
@@ -33,11 +52,23 @@ export default function About() {
           </div>
         </div>
 
-        <div className="min-w-0 flex-1">
-          <h1 className="mb-6 text-3xl font-bold">About Me</h1>
-          <p>
-            เขียนแนะนำตัวตรงนี้ 2-3 ประโยค เช่น เรียนอะไร ถนัดอะไร
-            และกำลังมองหาโอกาสแบบไหน
+        <div className="min-w-0 flex-1 sm:self-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#a78bfa]">
+            About Me
+          </p>
+          <h1 className="mt-3 text-3xl font-extrabold sm:text-4xl">
+            Phakkharaphong Sarang-ngam
+          </h1>
+          <p className="mt-2 text-lg font-semibold">
+            <span className="grad-text">Full-Stack Developer · UX/UI Design</span>
+          </p>
+          <p className="mt-1 text-sm text-[#F8FAFC]/50">
+            กำลังมองหาโอกาสฝึกงาน
+          </p>
+          <p className="mt-5 max-w-xl leading-relaxed text-[#F8FAFC]/70">
+            นักศึกษาวิศวกรรมคอมพิวเตอร์ชั้นปีที่ 4 ที่สนใจงาน Full-Stack และ UX/UI Design
+            ถนัดการพัฒนาเว็บ แอปมือถือ และระบบ IoT โดยดูแลงานตั้งแต่ออกแบบหน้าจอไปจนถึงระบบหลังบ้าน
+            ตอนนี้กำลังมองหาโอกาสฝึกงานเพื่อร่วมสร้างผลงานจริงกับทีม
           </p>
         </div>
       </div>
@@ -53,15 +84,21 @@ export default function About() {
               key={e.school}
               className="rounded-2xl border border-[#202530] bg-[#12141d]/70 p-6 backdrop-blur transition hover:border-[#8B5CF6]/50"
             >
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-                <h3 className="font-semibold">{e.school}</h3>
-                <span className="shrink-0 text-sm text-[#F8FAFC]/60">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h3 className="font-semibold">{e.school}</h3>
+                  <p className="mt-1 text-sm text-[#F8FAFC]/70">{e.major}</p>
+                  <p className="text-sm font-medium text-[#a78bfa]">{e.gpa}</p>
+                </div>
+                <span className="shrink-0 text-right text-sm text-[#F8FAFC]/60 sm:whitespace-nowrap">
                   {e.period}
                 </span>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-[#F8FAFC]/70">
-                {e.detail}
-              </p>
+              <ul className="mt-4 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-[#F8FAFC]/70 marker:text-[#8B5CF6]">
+                {e.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
