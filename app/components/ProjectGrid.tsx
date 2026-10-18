@@ -1,6 +1,6 @@
 import { ArrowUpRight, FileText, PlayCircle } from "lucide-react";
 import { SpotlightCard } from "./ui/spotlight-card";
-import ImageSlider from "./ImageSlider";
+import ProjectMarquee from "./ProjectMarquee";
 import { tagIcons, fallbackTag } from "../data/tagIcons";
 import type { Project } from "../data/projects";
 
@@ -35,7 +35,11 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
           >
             {/* รูปเลื่อน */}
             <div className="md:w-1/2">
-              <ImageSlider images={p.gallery ?? []} alt={p.title} />
+              <ProjectMarquee
+                images={p.gallery ?? []}
+                alt={p.title}
+                reverse={idx % 2 === 1}
+              />
             </div>
 
             {/* ข้อมูล */}
