@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ImageMarquee from "../components/ImageMarquee";
 
 // แก้ตรงนี้: ข้อมูลการศึกษา
 const education = [
@@ -23,6 +24,17 @@ const education = [
       "แสดงถึงทักษะการคิดวิเคราะห์ การแก้ปัญหา และความสนใจด้านวิทยาศาสตร์และเทคโนโลยี",
     ],
   },
+];
+
+// แก้ตรงนี้: รูปกิจกรรมสมัยมัธยม (ไฟล์อยู่ใน public/school/)
+const schoolPhotos = [
+  { src: "/school/1.jpg", caption: "คำอธิบายรูปที่ 1" },
+  { src: "/school/2.jpg", caption: "คำอธิบายรูปที่ 2" },
+  { src: "/school/3.jpg", caption: "คำอธิบายรูปที่ 3" },
+  { src: "/school/4.jpg", caption: "คำอธิบายรูปที่ 4" },
+  { src: "/school/5.jpg", caption: "คำอธิบายรูปที่ 5" },
+  { src: "/school/6.jpg", caption: "คำอธิบายรูปที่ 6" },
+  { src: "/school/7.jpg", caption: "คำอธิบายรูปที่ 7" },
 ];
 
 export default function About() {
@@ -101,6 +113,9 @@ export default function About() {
               </ul>
             </div>
           ))}
+
+          {/* รูปเคลื่อนที่ใต้การ์ดโรงเรียน */}
+          <ImageMarquee items={schoolPhotos} />
         </div>
       </section>
     </main>
