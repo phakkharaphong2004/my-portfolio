@@ -63,7 +63,7 @@ export default function ImageMarquee({
                 className="group mr-8 w-72 shrink-0 cursor-pointer outline-none transition-transform duration-300 hover:-translate-y-3 sm:w-80"
               >
                 <div
-                  className={`relative overflow-hidden rounded-xl border bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60 group-focus-visible:border-[#8B5CF6] ${
+                  className={`overflow-hidden rounded-xl border bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60 group-focus-visible:border-[#8B5CF6] ${
                     isOpen ? "border-[#8B5CF6]/70" : "border-[#202530]"
                   }`}
                 >
@@ -75,17 +75,19 @@ export default function ImageMarquee({
                     draggable={false}
                     className="aspect-[3/2] w-full object-cover"
                   />
-                  {/* คำอธิบาย: ขึ้นเมื่อคลิกรูปนั้น */}
-                  <div
-                    className={`pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B0D12]/95 via-[#0B0D12]/80 to-transparent px-4 pb-3 pt-10 text-sm leading-relaxed text-[#F8FAFC] transition-all duration-300 ${
-                      isOpen
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-2 opacity-0"
-                    }`}
-                  >
-                    {item.caption}
-                  </div>
                 </div>
+
+                {/* คำอธิบายใต้รูป: ขึ้นเมื่อคลิกรูปนั้น (จองที่ไว้ ไม่ให้เลย์เอาต์กระตุก) */}
+                <figcaption
+                  className={`mt-3 flex min-h-[2.75rem] items-start gap-2 px-1 text-sm leading-relaxed text-[#F8FAFC] transition-all duration-300 ${
+                    isOpen
+                      ? "translate-y-0 opacity-100"
+                      : "-translate-y-1 opacity-0"
+                  }`}
+                >
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-[#a78bfa] to-[#3B82F6]" />
+                  <span>{item.caption}</span>
+                </figcaption>
               </figure>
             );
           })}
