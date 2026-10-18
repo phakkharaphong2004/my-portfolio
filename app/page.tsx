@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
 import ContactSection from "./components/ContactSection";
+import SkillTag from "./components/SkillTag";
 
 type SkillIcon = ComponentType<{ className?: string; style?: CSSProperties }>;
 type SkillItem = { name: string; icon: SkillIcon; color: string };
@@ -326,16 +327,13 @@ export default function Home() {
                       {r.items.map((s) => {
                         const Icon = s.icon;
                         return (
-                          <span
-                            key={s.name}
-                            className="group/tag inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-sm text-[#F8FAFC]/90 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#a78bfa] hover:bg-[#8B5CF6]/20 hover:text-white hover:shadow-[0_8px_22px_-8px_rgba(139,92,246,0.7)]"
-                          >
+                          <SkillTag key={s.name}>
                             <Icon
-                              className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/tag:scale-125"
+                              className="skill-icon h-4 w-4 shrink-0 transition-transform duration-300 group-hover/tag:scale-125"
                               style={{ color: s.color }}
                             />
                             {s.name}
-                          </span>
+                          </SkillTag>
                         );
                       })}
                     </div>

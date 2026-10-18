@@ -6,7 +6,8 @@ const education = [
   {
     school: "Sripatum University (SPU) · มหาวิทยาลัยศรีปทุม",
     major: "สาขาวิศวกรรมคอมพิวเตอร์ (ชั้นปีที่ 4)",
-    gpa: "GPA 3.59",
+    gpa: "3.59",
+    logo: { src: "/logos/spu.png", alt: "โลโก้มหาวิทยาลัยศรีปทุม (SPU)" },
     period: "ก.ย. 2023 – ปัจจุบัน",
     points: [
       "โปรเจกต์วิชาการหลายด้าน: Software Development, Hardware/IoT, System Analysis, UX/UI Design",
@@ -17,7 +18,8 @@ const education = [
   {
     school: "Kandongpittayakhom School · โรงเรียนแคนดงพิทยาคม",
     major: "มัธยมปลาย สายวิทย์-คณิต",
-    gpa: "GPA 3.81",
+    gpa: "3.81",
+    logo: { src: "/logos/kandong.webp", alt: "ตราโรงเรียนแคนดงพิทยาคม" },
     period: "พ.ค. 2020 – มี.ค. 2023",
     points: [
       "ตัวแทนโรงเรียนแข่งขันด้านวิทยาศาสตร์ (Science Intelligence Competition)",
@@ -104,10 +106,31 @@ export default function About() {
               className="rounded-2xl border border-[#202530] bg-[#12141d]/70 p-6 backdrop-blur transition hover:border-[#8B5CF6]/50"
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-semibold">{e.school}</h3>
-                  <p className="mt-1 text-sm text-[#F8FAFC]/70">{e.major}</p>
-                  <p className="text-sm font-medium text-[#a78bfa]">{e.gpa}</p>
+                <div className="flex min-w-0 items-start gap-4">
+                  {/* โลโก้สถาบัน (พื้นขาวให้โลโก้สีเข้มอ่านได้บนธีมมืด) */}
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-white/20 bg-white p-1.5 shadow-[0_0_18px_rgba(139,92,246,0.25)] sm:h-20 sm:w-20">
+                    <Image
+                      src={e.logo.src}
+                      alt={e.logo.alt}
+                      fill
+                      sizes="80px"
+                      className="object-contain p-1.5"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-semibold">{e.school}</h3>
+                    <p className="mt-1 text-sm text-[#F8FAFC]/70">{e.major}</p>
+                    {/* กรอบ GPA */}
+                    <span className="mt-2.5 inline-flex items-center gap-2 rounded-lg border border-[#8B5CF6]/60 bg-[#8B5CF6]/10 px-3 py-1 shadow-[0_0_14px_rgba(139,92,246,0.25)]">
+                      <span className="text-[11px] font-semibold uppercase tracking-widest text-[#F8FAFC]/60">
+                        GPA
+                      </span>
+                      <span className="grad-text text-base font-extrabold">
+                        {e.gpa}
+                      </span>
+                      <span className="text-xs text-[#F8FAFC]/40">/ 4.00</span>
+                    </span>
+                  </div>
                 </div>
                 <span className="shrink-0 text-right text-sm text-[#F8FAFC]/60 sm:whitespace-nowrap">
                   {e.period}
