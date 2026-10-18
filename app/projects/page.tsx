@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "../data/projects";
 import { SpotlightCard } from "../components/ui/spotlight-card";
+import { tagIcons, fallbackTag } from "../data/tagIcons";
 
 export default function Projects() {
   return (
@@ -73,14 +74,21 @@ export default function Projects() {
                   )}
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3 py-1 text-xs text-[#F8FAFC]/90"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                    {p.tags.map((t) => {
+                      const { icon: Icon, color } = tagIcons[t] ?? fallbackTag;
+                      return (
+                        <span
+                          key={t}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3 py-1 text-xs text-[#F8FAFC]/90"
+                        >
+                          <Icon
+                            className="h-3.5 w-3.5 shrink-0"
+                            style={{ color }}
+                          />
+                          {t}
+                        </span>
+                      );
+                    })}
                   </div>
 
                   {(p.github || p.demo) && (
