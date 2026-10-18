@@ -46,34 +46,37 @@ const univPhotos = [
   },
   {
     src: "/univ/1.2.jpg",
-    title: "ชื่อเกียรติบัตรที่ 2",
-    caption: "คำอธิบายสั้น ๆ",
+    title: "รออัปเดต (Awaiting update)",
+    caption: "รออัปเดต (Awaiting update)",
   },
   {
     src: "/univ/1.3.jpg",
-    title: "ชื่อเกียรติบัตรที่ 3",
-    caption: "คำอธิบายสั้น ๆ",
+    title: "รออัปเดต (Awaiting update)",
+    caption: "รออัปเดต (Awaiting update)ๆ",
   },
   {
     src: "/univ/1.4.jpg",
-    title: "ชื่อเกียรติบัตรที่ 4",
-    caption: "คำอธิบายสั้น ๆ",
+    title: "รออัปเดต (Awaiting update)",
+    caption: "รออัปเดต (Awaiting update)",
   },
   {
     src: "/univ/1.5.jpg",
-    title: "ชื่อเกียรติบัตรที่ 5",
-    caption: "คำอธิบายสั้น ๆ",
+    title: "รออัปเดต (Awaiting update)",
+    caption: "รออัปเดต (Awaiting update)",
   },
   {
     src: "/univ/1.6.jpg",
-    title: "ชื่อเกียรติบัตรที่ 6",
-    caption: "คำอธิบายสั้น ๆ",
+    title: "รออัปเดต (Awaiting update)",
+    caption: "รออัปเดต (Awaiting update)ๆ",
   },
 ];
 
 // แก้ตรงนี้: รูปกิจกรรมสมัยมัธยม (ไฟล์อยู่ใน public/school/)
 const schoolPhotos = [
-  { src: "/school/1.jpg", caption: "คำอธิบายรูปที่ 1" },
+  { src: "/school/1.jpg",
+    title: "Google", 
+    caption: "หัวข้อ Internet Awesome เพื่อเรียนรู้การใช้อินเทอร์เน็ตอย่างปลอดภัย การปกป้องข้อมูลส่วนบุคคล การสร้างรหัสผ่านที่แข็งแกร่ง และการรู้เท่าทันพฤติกรรมที่ไม่เหมาะสมบนโลกออนไลน์" 
+  },
   {
     src: "/school/2.jpg",
     title: "เกียรติบัตรมหาวิทยาลัยสงขลานครินทร์ (PSU)",
