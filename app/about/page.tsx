@@ -45,29 +45,19 @@ const univPhotos = [
     caption: "หลักสูตร Machine Learning Foundations ผ่านการอบรมรวม 20 ชั่วโมง ได้เรียนรู้พื้นฐานด้าน Machine Learning และการประยุกต์ใช้ AI ซึ่งเป็นทักษะที่สามารถต่อยอดในการพัฒนาโปรเจกต์ด้านเทคโนโลยีได้",
   },
   {
-    src: "/univ/1.2.jpg",
-    title: "รออัปเดต (Awaiting update)",
-    caption: "รออัปเดต (Awaiting update)",
+    pending: true, title: "เกียรติบัตรใหม่", caption: "กำลังรวบรวม เร็ว ๆ นี้"
   },
   {
-    src: "/univ/1.3.jpg",
-    title: "รออัปเดต (Awaiting update)",
-    caption: "รออัปเดต (Awaiting update)ๆ",
+    pending: true, title: "เกียรติบัตรใหม่", caption: "กำลังรวบรวม เร็ว ๆ นี้"
   },
   {
-    src: "/univ/1.4.jpg",
-    title: "รออัปเดต (Awaiting update)",
-    caption: "รออัปเดต (Awaiting update)",
+   pending: true, title: "เกียรติบัตรใหม่", caption: "กำลังรวบรวม เร็ว ๆ นี้"
   },
   {
-    src: "/univ/1.5.jpg",
-    title: "รออัปเดต (Awaiting update)",
-    caption: "รออัปเดต (Awaiting update)",
+    pending: true, title: "เกียรติบัตรใหม่", caption: "กำลังรวบรวม เร็ว ๆ นี้"
   },
   {
-    src: "/univ/1.6.jpg",
-    title: "รออัปเดต (Awaiting update)",
-    caption: "รออัปเดต (Awaiting update)ๆ",
+   pending: true, title: "เกียรติบัตรใหม่", caption: "กำลังรวบรวม เร็ว ๆ นี้"
   },
 ];
 

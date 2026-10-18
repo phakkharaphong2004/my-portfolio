@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type Item = { src: string; title?: string; caption: string };
+type Item = { src?: string; title?: string; caption: string; pending?: boolean };
 
 export default function ImageMarquee({
   items,
@@ -49,15 +49,24 @@ export default function ImageMarquee({
               aria-hidden={i >= items.length}
               className="group mr-8 w-72 shrink-0 transition-transform duration-300 hover:-translate-y-3 sm:w-80"
             >
-              <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
-                <Image
-                  src={item.src}
-                  alt={item.title ?? item.caption}
-                  width={640}
-                  height={427}
-                  draggable={false}
-                  className="aspect-[3/2] w-full object-cover"
-                />
+                            <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
+                {item.pending || !item.src ? (
+                  <div className="flex aspect-[3/2] w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#8B5CF6]/10 to-[#3B82F6]/5">
+                    <span className="h-10 w-10 animate-spin rounded-full border-[3px] border-[#8B5CF6]/25 border-t-[#a78bfa]" />
+                    <span className="text-sm font-semibold text-[#F8FAFC]/70">
+                      รออัปเดต
+                    </span>
+                  </div>
+                ) : (
+                  <Image
+                    src={item.src}
+                    alt={item.title ?? item.caption}
+                    width={640}
+                    height={427}
+                    draggable={false}
+                    className="aspect-[3/2] w-full object-cover"
+                  />
+                )}
               </div>
 
               <figcaption className="mt-3 flex min-h-[4.5rem] -translate-y-1 items-start gap-2 px-1 text-sm leading-relaxed opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
