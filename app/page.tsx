@@ -1,30 +1,77 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
 
 // แก้ตรงนี้: ข้อมูลของคุณ
-const NAME = "Phakkharaphong Sarang-ngam ";
+const NAME = "Phakkharaphong Sarang-ngam";
 const HANDLE = "@phakkharaphong2004";
 const INTRO =
   "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง";
+
+function GithubIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+    </svg>
+  );
+}
+
+function LineIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <rect width="24" height="24" rx="6" fill="#06C755" />
+      <ellipse cx="12" cy="11" rx="7.5" ry="6" fill="#fff" />
+      <path d="M9 15.5 8 19l4.5-2.6z" fill="#fff" />
+      <text
+        x="12"
+        y="12.4"
+        textAnchor="middle"
+        fontSize="4.2"
+        fontWeight="700"
+        fill="#06C755"
+        fontFamily="Arial, sans-serif"
+      >
+        LINE
+      </text>
+    </svg>
+  );
+}
 
 const contacts = [
   {
     label: "Email",
     value: "phakkharaphongsaranggam@email.com",
     href: "mailto:phakkharaphongsaranggam@email.com",
+    tile: "bg-gradient-to-br from-[#8B5CF6] to-[#3B82F6] text-white",
+    icon: <Mail className="h-6 w-6" />,
   },
   {
     label: "Line",
     value: "phakkharaphong2004",
     href: "https://line.me/ti/p/~phakkharaphong2004",
+    tile: "",
+    icon: <LineIcon className="h-12 w-12 rounded-xl" />,
   },
   {
     label: "GitHub",
     value: "phakkharaphong2004",
     href: "https://github.com/phakkharaphong2004",
+    tile: "bg-white text-[#0B0D12]",
+    icon: <GithubIcon className="h-6 w-6" />,
   },
-  { label: "Phone", value: "065-320-4366", href: "tel:0653204366" },
+  {
+    label: "Phone",
+    value: "065-320-4366",
+    href: "tel:0653204366",
+    tile: "bg-gradient-to-br from-[#22c55e] to-[#16a34a] text-white",
+    icon: <Phone className="h-6 w-6" />,
+  },
 ];
 
 const skills = [
@@ -237,17 +284,29 @@ export default function Home() {
         <p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
           สนใจร่วมงานหรืออยากคุยเรื่องโปรเจกต์ ติดต่อได้ตามช่องทางนี้
         </p>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2">
           {contacts.map((c) => (
             <a
               key={c.label}
               href={c.href}
-              target="_blank"
+              target={c.href.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
-              className="glow-card p-6 sm:p-7"
+              className="glow-card group flex items-center gap-4 p-5 sm:p-6"
             >
-              <p className="mb-1 text-sm text-[#F8FAFC]/50">{c.label}</p>
-              <p className="break-all text-lg font-semibold">{c.value}</p>
+              <span
+                className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${c.tile}`}
+              >
+                {c.icon}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm text-[#F8FAFC]/50">
+                  {c.label}
+                </span>
+                <span className="block break-all text-base font-semibold sm:text-lg">
+                  {c.value}
+                </span>
+              </span>
+              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#F8FAFC]/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#a78bfa]" />
             </a>
           ))}
         </div>
