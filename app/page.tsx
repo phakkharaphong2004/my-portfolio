@@ -14,7 +14,38 @@ const skills = [
   { icon: "BE", title: "Backend", desc: "Node.js · REST API · SQL" },
   { icon: "IoT", title: "IoT & Mobile", desc: "ESP32 · MQTT · React Native" },
 ];
-
+const skillGroups = [
+  {
+    title: "UX/UI & Design",
+    rows: [
+      { label: "Design Tools", items: ["Figma", "Canva"] },
+      {
+        label: "Design Process",
+        items: [
+          "Wireframing",
+          "Prototyping",
+          "User Flow (Basic)",
+          "Usability Principles (Basic)",
+        ],
+      },
+      {
+        label: "Analysis",
+        items: ["System Analysis (Basic)", "UX/UI Design (Basic)"],
+      },
+    ],
+  },
+  {
+    title: "Technical Skills",
+    rows: [
+      { label: "Front-end", items: ["HTML", "CSS", "JavaScript (Basic)"] },
+      { label: "Back-end", items: ["Python", "Node.js (Basic)"] },
+      {
+        label: "Programming Fundamentals",
+        items: ["C/C++", "Python"],
+      },
+    ],
+  },
+];
 const code = [
   { t: "function Developer() {", c: "text-[#a78bfa]" },
   { t: "  return (", c: "text-[#F8FAFC]/60" },
@@ -205,6 +236,45 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+            </section>
+
+      {/* ทักษะ */}
+      <section className="relative mx-auto mt-24 max-w-6xl px-6">
+        <h2 className="text-center text-4xl font-extrabold">
+          <span className="grad-text">ทักษะของฉัน</span>
+        </h2>
+        <p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
+          เครื่องมือและความรู้ที่ใช้ในการออกแบบและพัฒนา
+        </p>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {skillGroups.map((g) => (
+            <div key={g.title} className="glass rounded-2xl p-6">
+              <h3 className="mb-5 text-lg font-bold">
+                <span className="grad-text">{g.title}</span>
+              </h3>
+              <div className="space-y-5">
+                {g.rows.map((r) => (
+                  <div key={r.label}>
+                    <p className="mb-2 text-xs uppercase tracking-widest text-[#F8FAFC]/40">
+                      {r.label}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {r.items.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-3.5 py-1.5 text-sm text-[#F8FAFC]/90 transition hover:border-[#8B5CF6] hover:bg-[#8B5CF6]/20"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
