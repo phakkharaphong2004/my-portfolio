@@ -38,6 +38,23 @@ export const projects: Project[] = [
       "/projects/spufood-2.jpg",
       "/projects/spufood-3.jpg",
     ],
+    links: [
+      {
+        label: "เอกสารโครงการ (SPUFOOD)",
+        url: "https://drive.google.com/file/d/1ZMEa9YhV_LaVZM-qgCrBTYBBWHbG_szQ/view?usp=drive_link",
+        type: "pdf",
+      },
+      {
+        label: "สไลด์ (SPUFOOD)",
+        url: "https://drive.google.com/file/d/1x_TGueoh3wcOJlnFNl1uJ2__1W6oNbIA/view?usp=drive_link",
+        type: "pdf",
+      },
+      {
+        label: "วิดีโอสาธิตระบบ SPUFOOD ",
+        url: "https://youtu.be/f0W_PL0vlvA?si=haBN-e2NR6kZkD6v",
+        type: "video",
+      },
+    ],
     
   },
   {
