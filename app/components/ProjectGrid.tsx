@@ -44,7 +44,6 @@ function Cover({ p, sizes }: { p: Project; sizes: string }) {
 export default function ProjectGrid({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState<Project | null>(null);
 
-  // ปิดด้วยปุ่ม Esc + ล็อกการเลื่อนหน้าตอนเปิด modal
   useEffect(() => {
     if (!active) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
@@ -98,7 +97,6 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      {/* Modal รายละเอียด */}
       {active && (
         <div
           className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
@@ -171,7 +169,8 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                   ))}
                 </div>
               )}
-                            {active.links && active.links.length > 0 && (
+
+              {active.links && active.links.length > 0 && (
                 <>
                   <h3 className="mt-6 text-sm font-bold uppercase tracking-widest text-[#F8FAFC]/60">
                     เอกสารและวิดีโอ
@@ -192,15 +191,14 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                             <FileText className="h-5 w-5" />
                           )}
                         </span>
-                        <span className="min-w-0 flex-1 font-medium">
-                          {l.label}
-                        </span>
+                        <span className="min-w-0 flex-1 font-medium">{l.label}</span>
                         <ArrowUpRight className="h-4 w-4 shrink-0 text-[#F8FAFC]/40 transition group-hover:text-[#a78bfa]" />
                       </a>
                     ))}
                   </div>
                 </>
               )}
+
               <div className="mt-6">
                 <Tags tags={active.tags} />
               </div>
