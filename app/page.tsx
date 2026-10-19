@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { T, type L } from "./components/LangProvider";
 import type { ComponentType, CSSProperties } from "react";
 import WindowBar from "./components/WindowBar";
 import {
@@ -31,10 +32,15 @@ type SkillItem = { name: string; icon: SkillIcon; color: string };
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "Phakkharaphong Sarang-ngam";
-const NAMETHAI = "พัครพงษ์ สารังงาม";
+const NAME_TH = "พัคระพงษ์ สารังงาม";
+const NAME_ZH = "พัคระพงษ์ สารังงาม"; // ใส่ชื่อภาษาจีนของคุณแทนได้ (ตอนนี้ใช้ชื่อไทยไปก่อน)
 const HANDLE = "@phakkharaphong2004";
-const INTRO =
-  "นักศึกษาวิศวกรรมคอมพิวเตอร์ที่มีความมุ่งมั่นในการพัฒนาซอฟต์แวร์และระบบเทคโนโลยี มีทักษะด้าน Web Development, Mobile Application Development และ Backend Systems ให้ความสำคัญกับการเขียนโค้ดอย่างมีประสิทธิภาพ การแก้ไขปัญหาอย่างเป็นระบบ และการพัฒนาโซลูชันที่ตอบโจทย์การใช้งานจริง พร้อมนำความรู้มาประยุกต์ใช้ในการทำงานร่วมกับทีม เรียนรู้เทคโนโลยีใหม่ ๆ และสร้างสรรค์ผลงานที่มีคุณค่าในสภาพแวดล้อมการทำงานระดับมืออาชีพ";
+
+const INTRO: L = {
+  th: "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง",
+  en: "Computer engineering student skilled in web, mobile apps and back-end systems, looking for an internship to build real-world projects.",
+  zh: "计算机工程专业学生，擅长网页、移动应用和后端系统开发，正在寻找实习机会，共同打造真实作品。",
+};
 
 const skills = [
   { icon: "FE", title: "Frontend", desc: "React · Next.js · Tailwind" },
@@ -43,45 +49,48 @@ const skills = [
 ];
 
 // แก้ตรงนี้: สกิลแยกเป็นกลุ่ม (แต่ละรายการ = 1 ป้าย พร้อมไอคอน)
-const L = "#a78bfa"; // สีไอคอนทั่วไป
+const PURPLE = "#a78bfa"; // สีไอคอนทั่วไป
 
 const skillGroups: {
-  title: string;
-  rows: { label: string; items: SkillItem[] }[];
+  slug: string;
+  title: L;
+  rows: { label: L; items: SkillItem[] }[];
 }[] = [
   {
-    title: "UX/UI & Design",
+    slug: "ux-ui-design",
+    title: { th: "UX/UI และการออกแบบ", en: "UX/UI & Design", zh: "UX/UI 与设计" },
     rows: [
       {
-        label: "Design Tools",
+        label: { th: "เครื่องมือออกแบบ", en: "Design Tools", zh: "设计工具" },
         items: [
           { name: "Figma", icon: FaFigma, color: "#F24E1E" },
           { name: "Canva", icon: SiCanvas, color: "#00C4CC" },
         ],
       },
       {
-        label: "Design Process",
+        label: { th: "กระบวนการออกแบบ", en: "Design Process", zh: "设计流程" },
         items: [
-          { name: "Wireframing", icon: PenTool, color: L },
-          { name: "Prototyping", icon: MousePointerClick, color: L },
-          { name: "User Flow (Basic)", icon: Workflow, color: L },
-          { name: "Usability Principles (Basic)", icon: Users, color: L },
+          { name: "Wireframing", icon: PenTool, color: PURPLE },
+          { name: "Prototyping", icon: MousePointerClick, color: PURPLE },
+          { name: "User Flow (Basic)", icon: Workflow, color: PURPLE },
+          { name: "Usability Principles (Basic)", icon: Users, color: PURPLE },
         ],
       },
       {
-        label: "Analysis",
+        label: { th: "การวิเคราะห์", en: "Analysis", zh: "分析" },
         items: [
-          { name: "System Analysis (Basic)", icon: Network, color: L },
-          { name: "UX/UI Design (Basic)", icon: Palette, color: L },
+          { name: "System Analysis (Basic)", icon: Network, color: PURPLE },
+          { name: "UX/UI Design (Basic)", icon: Palette, color: PURPLE },
         ],
       },
     ],
   },
   {
-    title: "Technical Skills",
+    slug: "technical-skills",
+    title: { th: "ทักษะทางเทคนิค", en: "Technical Skills", zh: "技术技能" },
     rows: [
       {
-        label: "Front-end",
+        label: { th: "ฝั่งหน้าเว็บ (Front-end)", en: "Front-end", zh: "前端" },
         items: [
           { name: "HTML", icon: FaHtml5, color: "#E34F26" },
           { name: "CSS", icon: FaCss3Alt, color: "#2D9CDB" },
@@ -89,24 +98,26 @@ const skillGroups: {
         ],
       },
       {
-        label: "Back-end",
+        label: { th: "ฝั่งหลังบ้าน (Back-end)", en: "Back-end", zh: "后端" },
         items: [
           { name: "Python", icon: FaPython, color: "#4B8BBE" },
           { name: "Node.js (Basic)", icon: FaNodeJs, color: "#68A063" },
         ],
       },
       {
-        label: "Hardware / IoT",
+        label: { th: "ฮาร์ดแวร์ / IoT", en: "Hardware / IoT", zh: "硬件 / 物联网" },
         items: [
-          { name: "ESP32", icon: Cpu, color: L },
-          { name: "MQTT", icon: Wifi, color: L },
+          { name: "ESP32", icon: Cpu, color: PURPLE },
+          { name: "MQTT", icon: Wifi, color: PURPLE },
         ],
       },
       {
-        label: "Programming Fundamentals",
-        items: [
-          { name: "C/C++", icon: SiCplusplus, color: "#659AD2" },
-        ],
+        label: {
+          th: "พื้นฐานการเขียนโปรแกรม",
+          en: "Programming Fundamentals",
+          zh: "编程基础",
+        },
+        items: [{ name: "C/C++", icon: SiCplusplus, color: "#659AD2" }],
       },
     ],
   },
@@ -149,7 +160,13 @@ export default function Home() {
         <div className="text-center lg:text-left">
           <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-[#F8FAFC]/80">
             <span className="h-2 w-2 rounded-full bg-[#a78bfa]" />
-            Open to internships
+            <T
+              v={{
+                th: "เปิดรับโอกาสฝึกงาน",
+                en: "Open to internships",
+                zh: "寻找实习机会",
+              }}
+            />
           </span>
 
           <h1 className="mt-8 font-extrabold uppercase leading-[1.05] tracking-tight">
@@ -166,12 +183,16 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 text-lg text-[#F8FAFC]/60">
-            Hi, I&apos;m{" "}
-            <span className="font-semibold text-[#F8FAFC]">{NAME}</span>
-            <span className="block -semibold text-[#F8FAFC]">{NAMETHAI}</span>
+            <T
+              v={{ th: "สวัสดี ฉันชื่อ", en: "Hi, I'm", zh: "你好，我是" }}
+            />
+            <span className="block font-semibold text-[#F8FAFC]">{NAME}</span>
+            <span className="block font-semibold text-[#F8FAFC]">
+              <T v={{ th: NAME_TH, en: NAME_TH, zh: NAME_ZH }} />
+            </span>
           </p>
           <p className="mx-auto mt-3 max-w-xl text-[#F8FAFC]/60 lg:mx-0">
-            {INTRO}
+            <T v={INTRO} />
           </p>
 
           <div className="mt-8 flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
@@ -179,22 +200,30 @@ export default function Home() {
               href="/projects"
               className="rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-8 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.45)] transition hover:scale-105"
             >
-              ดูผลงาน
+              <T v={{ th: "ดูผลงาน", en: "View projects", zh: "查看作品" }} />
             </Link>
             <a
               href="#contact"
               className="glass rounded-full px-8 py-3.5 font-semibold transition hover:scale-105 hover:border-[#3B82F6]"
             >
-              ติดต่อเพื่อร่วมงาน
+              <T
+                v={{
+                  th: "ติดต่อเพื่อร่วมงาน",
+                  en: "Get in touch",
+                  zh: "联系合作",
+                }}
+              />
             </a>
-            {/* ปุ่มดาวน์โหลด CV (ไฟล์อยู่ที่ public/CV-Phakkharaphong.pdf) */}
+            {/* ปุ่มดาวน์โหลด CV (ไฟล์อยู่ที่ public/CV-Phakkharaphong-fixed.pdf) */}
             <a
               href="/CV-Phakkharaphong-fixed.pdf"
               download="CV-Phakkharaphong-fixed.pdf"
               className="group inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/60 bg-[#8B5CF6]/10 px-8 py-3.5 font-semibold shadow-[0_0_24px_rgba(139,92,246,0.25)] transition hover:scale-105 hover:bg-[#8B5CF6]/20"
             >
               <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-              ดาวน์โหลด CV
+              <T
+                v={{ th: "ดาวน์โหลด CV", en: "Download CV", zh: "下载简历" }}
+              />
             </a>
           </div>
         </div>
@@ -207,7 +236,7 @@ export default function Home() {
               <MatrixRain />
               <Image
                 src="/profile.webp"
-                alt={`รูปโปรไฟล์ของ ${NAME}`}
+                alt={`Profile photo of ${NAME}`}
                 width={900}
                 height={1260}
                 priority
@@ -258,20 +287,28 @@ export default function Home() {
                 time.
               </h2>
               <p className="mt-2 text-xs text-[#F8FAFC]/50">
-                เว็บ แอป และระบบ IoT ที่ใช้งานได้จริง
+                <T
+                  v={{
+                    th: "เว็บ แอป และระบบ IoT ที่ใช้งานได้จริง",
+                    en: "Web, apps and IoT systems that actually work",
+                    zh: "真正可用的网页、应用和物联网系统",
+                  }}
+                />
               </p>
               <div className="mt-4 flex gap-2">
                 <Link
                   href="/projects"
                   className="rounded-lg bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-4 py-2 text-xs font-semibold"
                 >
-                  Explore Now
+                  <T
+                    v={{ th: "ดูผลงาน", en: "Explore Now", zh: "立即查看" }}
+                  />
                 </Link>
                 <Link
                   href="/about"
                   className="glass rounded-lg px-4 py-2 text-xs"
                 >
-                  About
+                  <T v={{ th: "เกี่ยวกับฉัน", en: "About", zh: "关于我" }} />
                 </Link>
               </div>
             </div>
@@ -294,7 +331,7 @@ export default function Home() {
         {/* รายการทักษะ */}
         <div className="glass float-slow rounded-2xl p-4 md:rotate-2">
           <p className="mb-3 text-xs uppercase tracking-widest text-[#F8FAFC]/40">
-            Skills
+            <T v={{ th: "ทักษะ", en: "Skills", zh: "技能" }} />
           </p>
           <div className="space-y-3">
             {skills.map((s) => (
@@ -318,51 +355,59 @@ export default function Home() {
       {/* ทักษะ */}
       <section className="relative mx-auto mt-24 max-w-6xl px-6">
         <h2 className="text-center text-3xl font-extrabold sm:text-4xl">
-          <span className="grad-text">ทักษะของฉัน</span>
+          <span className="grad-text">
+            <T v={{ th: "ทักษะของฉัน", en: "My Skills", zh: "我的技能" }} />
+          </span>
         </h2>
         <p className="mb-10 mt-2 text-center text-[#F8FAFC]/75">
-          เครื่องมือและความรู้ที่ใช้ในการออกแบบและพัฒนา
+          <T
+            v={{
+              th: "เครื่องมือและความรู้ที่ใช้ในการออกแบบและพัฒนา",
+              en: "Tools and knowledge I use for design and development",
+              zh: "用于设计与开发的工具和知识",
+            }}
+          />
         </p>
 
         <div className="grid gap-6 md:grid-cols-2">
-                              {skillGroups.map((g, idx) => (
+          {skillGroups.map((g, idx) => (
             <div
-              key={g.title}
+              key={g.slug}
               className={`glass overflow-hidden rounded-2xl ${
                 idx % 2 === 0 ? "float-slow" : "float"
               }`}
             >
-              <WindowBar
-                label={`${g.title.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "")}.dev`}
-              />
+              <WindowBar label={`${g.slug}.dev`} />
               <div className="p-6">
-              <h3 className="mb-5 text-lg font-bold">
-                <span className="grad-text">{g.title}</span>
-              </h3>
-              <div className="space-y-5">
-                {g.rows.map((r) => (
-                  <div key={r.label}>
-                    <p className="mb-2 text-xs uppercase tracking-widest text-[#F8FAFC]/60">
-                      {r.label}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {r.items.map((s) => {
-                        const Icon = s.icon;
-                        return (
-                          <SkillTag key={s.name}>
-                            <Icon
-                              className="skill-icon h-4 w-4 shrink-0 transition-transform duration-300 group-hover/tag:scale-125"
-                              style={{ color: s.color }}
-                            />
-                            {s.name}
-                          </SkillTag>
-                        );
-                      })}
+                <h3 className="mb-5 text-lg font-bold">
+                  <span className="grad-text">
+                    <T v={g.title} />
+                  </span>
+                </h3>
+                <div className="space-y-5">
+                  {g.rows.map((r) => (
+                    <div key={r.label.en}>
+                      <p className="mb-2 text-xs uppercase tracking-widest text-[#F8FAFC]/60">
+                        <T v={r.label} />
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {r.items.map((s) => {
+                          const Icon = s.icon;
+                          return (
+                            <SkillTag key={s.name}>
+                              <Icon
+                                className="skill-icon h-4 w-4 shrink-0 transition-transform duration-300 group-hover/tag:scale-125"
+                                style={{ color: s.color }}
+                              />
+                              {s.name}
+                            </SkillTag>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
             </div>
           ))}
         </div>
