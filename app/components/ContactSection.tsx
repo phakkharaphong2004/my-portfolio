@@ -1,5 +1,6 @@
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import { SpotlightCard } from "./ui/spotlight-card";
+import { T } from "./LangProvider";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -84,11 +85,19 @@ export default function ContactSection({
       className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
     >
       <h2 className="text-center text-4xl font-extrabold">
-        <span className="grad-text">ติดต่อฉัน</span>
-      </h2>
-      <p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
-        สนใจร่วมงานหรืออยากคุยเรื่องโปรเจกต์ ติดต่อได้ตามช่องทางนี้
-      </p>
+  <span className="grad-text">
+    <T v={{ th: "ติดต่อฉัน", en: "Contact Me", zh: "联系我" }} />
+  </span>
+</h2>
+<p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
+  <T
+    v={{
+      th: "สนใจร่วมงานหรืออยากคุยเรื่องโปรเจกต์ ติดต่อได้ตามช่องทางนี้",
+      en: "Interested in working together or discussing a project? Reach me here.",
+      zh: "有意合作或想聊聊项目？欢迎通过以下方式联系我。",
+    }}
+  />
+</p>
 
       {/* 4 ใบเรียงแถวเดียวบนจอใหญ่ / 2x2 บนจอกลาง / 1 คอลัมน์บนมือถือ */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
