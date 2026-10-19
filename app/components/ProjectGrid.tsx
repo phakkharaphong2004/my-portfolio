@@ -32,6 +32,7 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
           <WindowBar
             label={`${p.title.toLowerCase().replace(/\s+/g, "-")}.dev`}
           />
+          <div
             className={`flex flex-col md:flex-row ${
               idx % 2 === 1 ? "md:flex-row-reverse" : ""
             }`}

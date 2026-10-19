@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { ComponentType, CSSProperties } from "react";
+import WindowBar from "./components/WindowBar";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -322,8 +323,12 @@ export default function Home() {
         </p>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {skillGroups.map((g) => (
-            <div key={g.title} className="glass rounded-2xl p-6">
+                    {skillGroups.map((g) => (
+            <div key={g.title} className="glass overflow-hidden rounded-2xl">
+              <WindowBar
+                label={`${g.title.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "")}.dev`}
+              />
+              <div className="p-6">
               <h3 className="mb-5 text-lg font-bold">
                 <span className="grad-text">{g.title}</span>
               </h3>
@@ -350,6 +355,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           ))}
         </div>
