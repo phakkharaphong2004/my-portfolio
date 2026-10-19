@@ -31,6 +31,7 @@ type SkillItem = { name: string; icon: SkillIcon; color: string };
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "Phakkharaphong Sarang-ngam";
+const NAMETHAI = "พัครพงษ์ สารังงาม";
 const HANDLE = "@phakkharaphong2004";
 const INTRO =
   "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง";
@@ -167,6 +168,7 @@ export default function Home() {
           <p className="mt-6 text-lg text-[#F8FAFC]/60">
             Hi, I&apos;m{" "}
             <span className="font-semibold text-[#F8FAFC]">{NAME}</span>
+            <span className="font-semibold text-[#F8FAFC]">{NAMETHAI}</span>
           </p>
           <p className="mx-auto mt-3 max-w-xl text-[#F8FAFC]/60 lg:mx-0">
             {INTRO}
