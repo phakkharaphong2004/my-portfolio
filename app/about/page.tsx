@@ -1,11 +1,13 @@
 import Image from "next/image";
 import ImageMarquee from "../components/ImageMarquee";
 import { SpotlightCard } from "../components/ui/spotlight-card";
+import WindowBar from "../components/WindowBar";
 
 // แก้ตรงนี้: ข้อมูลการศึกษา
 const education = [
   {
     school: "Sripatum University (SPU) · มหาวิทยาลัยศรีปทุม",
+    label: "sripatum.ac.th", // ← เพิ่มบรรทัดนี้
     major: "สาขาวิศวกรรมคอมพิวเตอร์ (ชั้นปีที่ 4)",
     gpa: "3.59",
     logo: {
@@ -22,6 +24,7 @@ const education = [
   },
   {
     school: "Kandongpittayakhom School · โรงเรียนแคนดงพิทยาคม",
+    label: "kandongpittayakhom.school", // ← เพิ่มบรรทัดนี้
     major: "มัธยมปลาย สายวิทย์-คณิต",
     gpa: "3.81",
     logo: {
@@ -162,8 +165,12 @@ export default function About() {
             <span className="grad-text">การศึกษา</span>
           </h2>
           <div className="space-y-5">
-            {education.map((e) => (
-              <SpotlightCard key={e.school}>
+                        {education.map((e, idx) => (
+              <SpotlightCard
+                key={e.school}
+                className={idx % 2 === 0 ? "float-slow" : "float"}
+              >
+                <WindowBar label={e.label} />
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex min-w-0 items-start gap-4">
