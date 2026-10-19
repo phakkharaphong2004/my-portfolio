@@ -3,6 +3,7 @@ import { SpotlightCard } from "./ui/spotlight-card";
 import ProjectMarquee from "./ProjectMarquee";
 import { tagIcons, fallbackTag } from "../data/tagIcons";
 import type { Project } from "../data/projects";
+import WindowBar from "./WindowBar";
 
 function Tags({ tags }: { tags: string[] }) {
   return (
@@ -28,7 +29,9 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
     <div className="space-y-8">
       {projects.map((p, idx) => (
         <SpotlightCard key={p.title}>
-          <div
+          <WindowBar
+            label={`${p.title.toLowerCase().replace(/\s+/g, "-")}.dev`}
+          />
             className={`flex flex-col md:flex-row ${
               idx % 2 === 1 ? "md:flex-row-reverse" : ""
             }`}
