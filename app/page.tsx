@@ -34,7 +34,7 @@ const NAME = "Phakkharaphong Sarang-ngam";
 const NAMETHAI = "พัครพงษ์ สารังงาม";
 const HANDLE = "@phakkharaphong2004";
 const INTRO =
-  "นักศึกษาวิศวกรรมคอมพิวเตอร์ ถนัดการพัฒนาเว็บ แอปมือถือ และระบบหลังบ้าน กำลังมองหาโอกาสฝึกงานและร่วมสร้างผลงานจริง";
+  "นักศึกษาวิศวกรรมคอมพิวเตอร์ที่มีความมุ่งมั่นในการพัฒนาซอฟต์แวร์และระบบเทคโนโลยี มีทักษะด้าน Web Development, Mobile Application Development และ Backend Systems ให้ความสำคัญกับการเขียนโค้ดอย่างมีประสิทธิภาพ การแก้ไขปัญหาอย่างเป็นระบบ และการพัฒนาโซลูชันที่ตอบโจทย์การใช้งานจริง พร้อมนำความรู้มาประยุกต์ใช้ในการทำงานร่วมกับทีม เรียนรู้เทคโนโลยีใหม่ ๆ และสร้างสรรค์ผลงานที่มีคุณค่าในสภาพแวดล้อมการทำงานระดับมืออาชีพ";
 
 const skills = [
   { icon: "FE", title: "Frontend", desc: "React · Next.js · Tailwind" },
@@ -166,8 +166,8 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 text-lg text-[#F8FAFC]/60">
-            Hi,{" "}
-            <span className="block -semibold text-[#F8FAFC]">{NAME}</span>
+            Hi, I&apos;m{" "}
+            <span className="font-semibold text-[#F8FAFC]">{NAME}</span>
             <span className="block -semibold text-[#F8FAFC]">{NAMETHAI}</span>
           </p>
           <p className="mx-auto mt-3 max-w-xl text-[#F8FAFC]/60 lg:mx-0">
@@ -185,7 +185,7 @@ export default function Home() {
               href="#contact"
               className="glass rounded-full px-8 py-3.5 font-semibold transition hover:scale-105 hover:border-[#3B82F6]"
             >
-              ติดต่อฉัน
+              ติดต่อเพื่อร่วมงาน
             </a>
             {/* ปุ่มดาวน์โหลด CV (ไฟล์อยู่ที่ public/CV-Phakkharaphong.pdf) */}
             <a
