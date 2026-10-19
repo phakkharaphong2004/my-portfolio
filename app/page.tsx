@@ -166,9 +166,9 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 text-lg text-[#F8FAFC]/60">
-            Hi, I&apos;m{" "}
-            <span className="font-semibold text-[#F8FAFC]">{NAME}</span>
-            <span className="font-semibold text-[#F8FAFC]">{NAMETHAI}</span>
+            Hi,{" "}
+            <span className="block -semibold text-[#F8FAFC]">{NAME}</span>
+            <span className="block -semibold text-[#F8FAFC]">{NAMETHAI}</span>
           </p>
           <p className="mx-auto mt-3 max-w-xl text-[#F8FAFC]/60 lg:mx-0">
             {INTRO}
