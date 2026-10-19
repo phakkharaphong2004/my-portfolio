@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useLang, type Lang } from "./LangProvider";
@@ -10,22 +11,47 @@ const options: { code: Lang; label: string }[] = [
 
 export default function LangSwitcher() {
   const { lang, setLang } = useLang();
+
   return (
-    <div className="fixed right-3 top-3 z-[9999] flex gap-1 rounded-full border border-white/10 bg-[#0B0D12]/70 p-1 shadow-lg backdrop-blur-lg md:right-6 md:top-12">
-      {options.map((o) => (
+    <nav
+      aria-label="Language selector"
+      style={{
+        position: "fixed",
+        top: "16px",
+        right: "16px",
+        zIndex: 99999,
+        display: "flex",
+        gap: "4px",
+        padding: "5px",
+        borderRadius: "9999px",
+        border: "1px solid rgba(255,255,255,0.2)",
+        background: "#171923",
+        boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+      }}
+    >
+      {options.map((option) => (
         <button
-          key={o.code}
-          onClick={() => setLang(o.code)}
-          aria-pressed={lang === o.code}
-          className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-            lang === o.code
-              ? "bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] text-white"
-              : "text-white/70 hover:text-white"
-          }`}
+          key={option.code}
+          type="button"
+          onClick={() => setLang(option.code)}
+          aria-pressed={lang === option.code}
+          style={{
+            border: 0,
+            borderRadius: "9999px",
+            padding: "8px 12px",
+            cursor: "pointer",
+            fontSize: "12px",
+            fontWeight: 600,
+            color: "#ffffff",
+            background:
+              lang === option.code
+                ? "linear-gradient(90deg, #8B5CF6, #3B82F6)"
+                : "transparent",
+          }}
         >
-          {o.label}
+          {option.label}
         </button>
       ))}
-    </div>
+    </nav>
   );
 }
