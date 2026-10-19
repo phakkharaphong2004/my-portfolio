@@ -323,8 +323,13 @@ export default function Home() {
         </p>
 
         <div className="grid gap-6 md:grid-cols-2">
-                    {skillGroups.map((g) => (
-            <div key={g.title} className="glass overflow-hidden rounded-2xl">
+                              {skillGroups.map((g, idx) => (
+            <div
+              key={g.title}
+              className={`glass overflow-hidden rounded-2xl ${
+                idx % 2 === 0 ? "float-slow" : "float"
+              }`}
+            >
               <WindowBar
                 label={`${g.title.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "")}.dev`}
               />
