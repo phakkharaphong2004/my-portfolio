@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { T, useTr, type L } from "./LangProvider";
 
-type Item = { src?: string; title?: string; caption: string; pending?: boolean };
+type Item = { src?: string; title?: L; caption: L; pending?: boolean };
 
 export default function ImageMarquee({
   items,
@@ -15,6 +16,7 @@ export default function ImageMarquee({
   reverse?: boolean; // true = วิ่งสวนทาง
 }) {
   const [paused, setPaused] = useState(false);
+  const tr = useTr();
   const loop = [...items, ...items];
 
   const hold = () => setPaused(true);
@@ -49,18 +51,24 @@ export default function ImageMarquee({
               aria-hidden={i >= items.length}
               className="group mr-8 w-72 shrink-0 transition-transform duration-300 hover:-translate-y-3 sm:w-80"
             >
-                            <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
+              <div className="overflow-hidden rounded-xl border border-[#202530] bg-[#12141d] transition-colors duration-300 group-hover:border-[#8B5CF6]/60">
                 {item.pending || !item.src ? (
                   <div className="flex aspect-[3/2] w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#8B5CF6]/10 to-[#3B82F6]/5">
                     <span className="h-10 w-10 animate-spin rounded-full border-[3px] border-[#8B5CF6]/25 border-t-[#a78bfa]" />
                     <span className="text-sm font-semibold text-[#F8FAFC]/70">
-                      รออัปเดต
+                      <T
+                        v={{
+                          th: "รออัปเดต",
+                          en: "Coming soon",
+                          zh: "即将更新",
+                        }}
+                      />
                     </span>
                   </div>
                 ) : (
                   <Image
                     src={item.src}
-                    alt={item.title ?? item.caption}
+                    alt={tr(item.title ?? item.caption)}
                     width={640}
                     height={427}
                     draggable={false}
@@ -74,10 +82,12 @@ export default function ImageMarquee({
                 <span>
                   {item.title && (
                     <strong className="block font-semibold text-[#F8FAFC]">
-                      {item.title}
+                      <T v={item.title} />
                     </strong>
                   )}
-                  <span className="text-[#F8FAFC]/70">{item.caption}</span>
+                  <span className="text-[#F8FAFC]/70">
+                    <T v={item.caption} />
+                  </span>
                 </span>
               </figcaption>
             </figure>
@@ -85,7 +95,13 @@ export default function ImageMarquee({
         </div>
       </div>
       <p className="mt-3 text-center text-xs text-[#F8FAFC]/40">
-        เอาเมาส์ชี้ที่รูปเพื่อดูคำอธิบาย · กดเมาส์ค้างเพื่อหยุดดูรูป
+        <T
+          v={{
+            th: "เอาเมาส์ชี้ที่รูปเพื่อดูคำอธิบาย · กดเมาส์ค้างเพื่อหยุดดูรูป",
+            en: "Hover an image to see its description · press and hold to pause",
+            zh: "鼠标悬停图片查看说明 · 按住鼠标可暂停滚动",
+          }}
+        />
       </p>
     </div>
   );
