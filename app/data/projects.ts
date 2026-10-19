@@ -34,9 +34,11 @@ export const projects: Project[] = [
     ],
     tags: ["Figma", "Canva", "Wireframe", "Prototype", "User Flow"],
      gallery: [
-      "/projects/spufood-1.jpg",
-      "/projects/spufood-2.jpg",
-      "/projects/spufood-3.jpg",
+      "/projects/SPU1.png",
+      "/projects/SPU2.png",
+      "/projects/SPU3.png",
+      "/projects/SPU4.png",
+      "/projects/SPU5.png",
     ],
     links: [
       {
