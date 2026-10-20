@@ -46,8 +46,6 @@ export default function FallingIcons() {
   const idRef = useRef(0);
 
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
 
     const spawn = (x: number) => {
       const pick = ICONS[Math.floor(Math.random() * ICONS.length)];
