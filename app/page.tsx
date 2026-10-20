@@ -22,10 +22,13 @@ import {
   Cpu,
   Wifi,
   Download,
+  ArrowRight,
 } from "lucide-react";
 import MatrixRain from "./components/MatrixRain";
 import ContactSection from "./components/ContactSection";
 import SkillTag from "./components/SkillTag";
+import { projects } from "./data/projects";
+import { tagIcons, fallbackTag } from "./data/tagIcons";
 
 type SkillIcon = ComponentType<{ className?: string; style?: CSSProperties }>;
 type SkillItem = { name: string; icon: SkillIcon; color: string };
@@ -41,12 +44,6 @@ const INTRO: L = {
   en: "Computer engineering student skilled in web, mobile apps and back-end systems, looking for an internship to build real-world projects.",
   zh: "计算机工程专业学生，擅长网页、移动应用和后端系统开发，正在寻找实习机会，共同打造真实作品。",
 };
-
-const skills = [
-  { icon: "FE", title: "Frontend", desc: "React · Next.js · Tailwind" },
-  { icon: "BE", title: "Backend", desc: "Node.js · REST API · SQL" },
-  { icon: "IoT", title: "IoT & Mobile", desc: "ESP32 · MQTT · React Native" },
-];
 
 // แก้ตรงนี้: สกิลแยกเป็นกลุ่ม (แต่ละรายการ = 1 ป้าย พร้อมไอคอน)
 const PURPLE = "#a78bfa"; // สีไอคอนทั่วไป
@@ -123,28 +120,13 @@ const skillGroups: {
   },
 ];
 
-const code = [
-  { t: "function Developer() {", c: "text-[#a78bfa]" },
-  { t: "  return (", c: "text-[#F8FAFC]/60" },
-  { t: "    <Skills>", c: "text-[#3B82F6]" },
-  { t: "      <Code />", c: "text-[#F8FAFC]/80" },
-  { t: "      <Design />", c: "text-[#F8FAFC]/80" },
-  { t: "      <Build />", c: "text-[#F8FAFC]/80" },
-  { t: "      <Improve />", c: "text-[#F8FAFC]/80" },
-  { t: "    </Skills>", c: "text-[#3B82F6]" },
-  { t: "  );", c: "text-[#F8FAFC]/60" },
-  { t: "}", c: "text-[#a78bfa]" },
-];
-
-function Dots() {
-  return (
-    <div className="flex gap-1.5">
-      <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-      <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-      <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-    </div>
-  );
-}
+// โปรเจกต์เด่น 3 ใบ: ใบแรกใน data/projects.ts จะอยู่ตรงกลาง (ใบใหญ่)
+const featured = projects.slice(0, 3);
+const showcase = [featured[1], featured[0], featured[2]].filter(
+  (p): p is (typeof projects)[number] => Boolean(p)
+);
+// ตำแหน่ง ซ้าย / กลาง / ขวา
+const cardPos = ["float-slow md:-rotate-2", "float", "float-slow md:rotate-2"];
 
 export default function Home() {
   return (
@@ -254,101 +236,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* การ์ดกระจกซ้อนกัน */}
-      <section className="relative mx-auto mt-24 grid max-w-6xl items-center gap-6 px-6 md:grid-cols-[1fr_1.35fr_1fr]">
-        {/* หน้าต่างโค้ด */}
-        <div className="glass float-slow rounded-2xl p-4 md:-rotate-2">
-          <Dots />
-          <div className="mt-4 overflow-x-auto font-mono text-xs leading-6">
-            {code.map((l, i) => (
-              <div key={i} className={`whitespace-pre ${l.c}`}>
-                <span className="mr-3 select-none text-[#F8FAFC]/25">
-                  {i + 1}
-                </span>
-                {l.t}
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* ผลงานเด่น: การ์ดกระจก 3 ใบ */}
+      <section className="relative mx-auto mt-24 max-w-6xl px-6">
+        <h2 className="text-center text-3xl font-extrabold sm:text-4xl">
+          <span className="grad-text">
+            <T
+              v={{
+                th: "ผลงานเด่น",
+                en: "Featured Projects",
+                zh: "精选作品",
+              }}
+            />
+          </span>
+        </h2>
+        <p className="mb-10 mt-2 text-center text-[#F8FAFC]/60">
+          <T
+            v={{
+              th: "ตัวอย่างโปรเจกต์ที่ได้ลงมือทำ",
+              en: "A few projects I've built",
+              zh: "部分亲手完成的项目",
+            }}
+          />
+        </p>
 
-        {/* หน้าต่างเบราว์เซอร์ */}
-        <div className="glass float rounded-2xl p-4">
-          <div className="flex items-center gap-3">
-            <Dots />
-            <div className="flex-1 truncate rounded-md bg-[#0B0D12]/70 px-3 py-1 text-center text-xs text-[#F8FAFC]/50">
-              portfolio.dev
-            </div>
-          </div>
-          <div className="mt-4 grid items-center gap-4 rounded-xl bg-[#0B0D12]/60 p-5 sm:grid-cols-[1.2fr_1fr]">
-            <div>
-              <h2 className="text-2xl font-bold leading-tight">
-                Building the future,{" "}
-                <span className="text-[#a78bfa]">one line</span> of code at a
-                time.
-              </h2>
-              <p className="mt-2 text-xs text-[#F8FAFC]/50">
-                <T
-                  v={{
-                    th: "เว็บ แอป และระบบ IoT ที่ใช้งานได้จริง",
-                    en: "Web, apps and IoT systems that actually work",
-                    zh: "真正可用的网页、应用和物联网系统",
-                  }}
-                />
-              </p>
-              <div className="mt-4 flex gap-2">
-                <Link
-                  href="/projects"
-                  className="rounded-lg bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-4 py-2 text-xs font-semibold"
-                >
-                  <T
-                    v={{ th: "ดูผลงาน", en: "Explore Now", zh: "立即查看" }}
-                  />
-                </Link>
-                <Link
-                  href="/about"
-                  className="glass rounded-lg px-4 py-2 text-xs"
-                >
-                  <T v={{ th: "เกี่ยวกับฉัน", en: "About", zh: "关于我" }} />
-                </Link>
-              </div>
-            </div>
-            <div
-              className="flex h-36 items-center justify-center"
-              style={{ perspective: 600 }}
-            >
-              <div className="cube">
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* รายการทักษะ */}
-        <div className="glass float-slow rounded-2xl p-4 md:rotate-2">
-          <p className="mb-3 text-xs uppercase tracking-widest text-[#F8FAFC]/40">
-            <T v={{ th: "ทักษะ", en: "Skills", zh: "技能" }} />
-          </p>
-          <div className="space-y-3">
-            {skills.map((s) => (
-              <div
-                key={s.title}
-                className="flex items-center gap-3 rounded-xl bg-[#0B0D12]/50 p-3"
+        <div className="grid items-center gap-6 md:grid-cols-[1fr_1.2fr_1fr]">
+          {showcase.map((p, i) => {
+            const cover = p.gallery?.[0];
+            return (
+              <Link
+                key={p.title}
+                href="/projects"
+                className={`glass group block overflow-hidden rounded-2xl transition hover:border-[#8B5CF6]/60 ${cardPos[i]}`}
               >
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#8B5CF6] to-[#3B82F6] text-xs font-bold">
-                  {s.icon}
+                <WindowBar
+                  label={`${p.title.toLowerCase().replace(/\s+/g, "-")}.dev`}
+                />
+
+                {cover && (
+                  <div className="relative aspect-video w-full overflow-hidden bg-[#12141d]">
+                    <Image
+                      src={cover}
+                      alt={p.title}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-xl font-extrabold">
+                      <span className="grad-text">{p.title}</span>
+                    </h3>
+                    <span className="shrink-0 text-xs text-[#F8FAFC]/50">
+                      {p.year}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-widest text-[#a78bfa]">
+                    {p.category}
+                  </p>
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-[#F8FAFC]/70">
+                    <T v={p.description} />
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {p.tags.slice(0, 3).map((t) => {
+                      const { icon: Icon, color } = tagIcons[t] ?? fallbackTag;
+                      return (
+                        <span
+                          key={t}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-[#8B5CF6]/30 bg-[#8B5CF6]/10 px-2.5 py-1 text-[11px] text-[#F8FAFC]/90"
+                        >
+                          <Icon
+                            className="h-3 w-3 shrink-0"
+                            style={{ color }}
+                          />
+                          {t}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold">{s.title}</p>
-                  <p className="text-xs text-[#F8FAFC]/50">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* ปุ่มดูเพิ่มเติม -> หน้าโปรเจกต์ */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] px-8 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.45)] transition hover:scale-105"
+          >
+            <T v={{ th: "ดูเพิ่มเติม", en: "View more", zh: "查看更多" }} />
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </section>
 
