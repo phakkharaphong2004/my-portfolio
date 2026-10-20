@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
+import { T, useTr } from "./LangProvider";
 
 // ดึง video id จากลิงก์ YouTube ได้ทุกแบบ (watch?v= / youtu.be / shorts / embed)
 function getYouTubeId(url: string): string | null {
@@ -24,6 +25,7 @@ function VideoSlide({
   onStop: () => void;
 }) {
   const [playing, setPlaying] = useState(false);
+  const tr = useTr();
 
   if (playing) {
     return (
@@ -44,7 +46,7 @@ function VideoSlide({
         setPlaying(true);
         onPlay();
       }}
-      aria-label={`เล่นวิดีโอ ${title}`}
+      aria-label={`${tr({ th: "เล่นวิดีโอ", en: "Play video", zh: "播放视频" })} ${title}`}
       className="group absolute inset-0 h-full w-full"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -75,6 +77,7 @@ export default function ProjectMarquee({
 }) {
   const [hovered, setHovered] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false); // มีวิดีโอกำลังเล่นอยู่
+  const tr = useTr();
 
   const slides: (string | null)[] =
     images.length > 0 ? images : [null, null, null];
@@ -113,7 +116,7 @@ export default function ProjectMarquee({
               {ytId ? (
                 <VideoSlide
                   id={ytId}
-                  title={`${alt} วิดีโอ`}
+                  title={`${alt} ${tr({ th: "วิดีโอ", en: "video", zh: "视频" })}`}
                   onPlay={() => setVideoOpen(true)}
                   onStop={() => setVideoOpen(false)}
                 />
@@ -129,7 +132,15 @@ export default function ProjectMarquee({
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#8B5CF6]/10 to-[#3B82F6]/5">
                   <span className="h-7 w-7 animate-spin rounded-full border-[3px] border-[#8B5CF6]/25 border-t-[#a78bfa]" />
-                  <span className="text-xs text-[#F8FAFC]/60">รออัปเดตภาพ</span>
+                  <span className="text-xs text-[#F8FAFC]/60">
+                    <T
+                      v={{
+                        th: "รออัปเดตภาพ",
+                        en: "Images coming soon",
+                        zh: "图片即将更新",
+                      }}
+                    />
+                  </span>
                 </div>
               )}
             </div>

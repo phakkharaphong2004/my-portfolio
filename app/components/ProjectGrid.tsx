@@ -4,6 +4,7 @@ import ProjectMarquee from "./ProjectMarquee";
 import { tagIcons, fallbackTag } from "../data/tagIcons";
 import type { Project } from "../data/projects";
 import WindowBar from "./WindowBar";
+import { T } from "./LangProvider";
 
 function Tags({ tags }: { tags: string[] }) {
   return (
@@ -61,25 +62,30 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
               </p>
 
               <p className="mt-3 text-sm leading-relaxed text-[#F8FAFC]/70">
-                {p.description}
+                <T v={p.description} />
               </p>
 
               {p.role && (
                 <p className="mt-2 text-xs text-[#F8FAFC]/50">
-                  บทบาท: <span className="text-[#F8FAFC]/80">{p.role}</span>
+                  <T v={{ th: "บทบาท", en: "Role", zh: "角色" }} />:{" "}
+                  <span className="text-[#F8FAFC]/80">
+                    <T v={p.role} />
+                  </span>
                 </p>
               )}
 
               {p.details && (
                 <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-[#F8FAFC]/70">
-                  {p.details}
+                  <T v={p.details} />
                 </p>
               )}
 
               {p.highlights && (
                 <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed text-[#F8FAFC]/70 marker:text-[#8B5CF6]">
                   {p.highlights.map((h) => (
-                    <li key={h}>{h}</li>
+                    <li key={h.en}>
+                      <T v={h} />
+                    </li>
                   ))}
                 </ul>
               )}
@@ -87,7 +93,13 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
               {p.links && p.links.length > 0 && (
                 <div className="mt-5">
                   <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#F8FAFC]/60">
-                    เอกสารและวิดีโอ
+                    <T
+                      v={{
+                        th: "เอกสารและวิดีโอ",
+                        en: "Documents & Videos",
+                        zh: "文档与视频",
+                      }}
+                    />
                   </p>
                   <div className="space-y-2">
                     {p.links.map((l) => (
@@ -106,7 +118,7 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                           )}
                         </span>
                         <span className="min-w-0 flex-1 font-medium">
-                          {l.label}
+                          <T v={l.label} />
                         </span>
                         <ArrowUpRight className="h-4 w-4 shrink-0 text-[#F8FAFC]/40 transition group-hover:text-[#a78bfa]" />
                       </a>
