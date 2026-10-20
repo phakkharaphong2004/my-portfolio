@@ -35,8 +35,8 @@ type SkillItem = { name: string; icon: SkillIcon; color: string };
 
 // แก้ตรงนี้: ข้อมูลของคุณ
 const NAME = "Phakkharaphong Sarang-ngam";
-const NAME_TH = "พัคระพงษ์ สารังงาม";
-const NAME_ZH = "พัคระพงษ์ สารังงาม"; // ใส่ชื่อภาษาจีนของคุณแทนได้ (ตอนนี้ใช้ชื่อไทยไปก่อน)
+const NAME_TH = "พัครพงษ์ สารังงาม";
+const NAME_ZH = "พัครพงษ์ สารังงาม"; // ใส่ชื่อภาษาจีนของคุณแทนได้ (ตอนนี้ใช้ชื่อไทยไปก่อน)
 const HANDLE = "@phakkharaphong2004";
 
 const INTRO: L = {
