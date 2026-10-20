@@ -46,7 +46,6 @@ export default function FallingIcons() {
   const idRef = useRef(0);
 
   useEffect(() => {
-
     const spawn = (x: number) => {
       const pick = ICONS[Math.floor(Math.random() * ICONS.length)];
       const size = 28 + Math.random() * 28;
