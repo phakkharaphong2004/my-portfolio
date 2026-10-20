@@ -36,15 +36,10 @@ export default function RootLayout({
         <LangProvider>
           <Navbar />
           <LangSwitcher />
+          <FallingIcons />
           {children}
         </LangProvider>
       </body>
     </html>
   );
 }
-<LangProvider>
-  <Navbar />
-  <LangSwitcher />
-  <FallingIcons />
-  {children}
-</LangProvider>
