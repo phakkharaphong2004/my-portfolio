@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { LangProvider } from "./components/LangProvider";
 import LangSwitcher from "./components/LangSwitcher";
+import FallingIcons from "./components/FallingIcons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,3 +42,9 @@ export default function RootLayout({
     </html>
   );
 }
+<LangProvider>
+  <Navbar />
+  <LangSwitcher />
+  <FallingIcons />
+  {children}
+</LangProvider>
