@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { LangProvider } from "./components/LangProvider";
 import LangSwitcher from "./components/LangSwitcher";
 import FallingIcons from "./components/FallingIcons";
+import SoundManager from "./components/SoundManager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Navbar />
           <LangSwitcher />
           <FallingIcons />
+          <SoundManager />
           {children}
         </LangProvider>
       </body>
