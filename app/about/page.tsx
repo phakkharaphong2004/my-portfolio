@@ -131,8 +131,6 @@ const univPhotos = [
   pending,
   pending,
   pending,
-  pending,
-  pending,
 ];
 
 // แก้ตรงนี้: รูปกิจกรรมสมัยมัธยม (ไฟล์อยู่ใน public/school/)
