@@ -119,6 +119,15 @@ const univPhotos = [
       zh: "完成 Machine Learning Foundations 课程（共 20 小时），学习了机器学习基础和 AI 应用，这些技能可用于后续的技术项目开发。",
     },
   },
+  {
+    src: "/univ/1.2.png",
+    title: same("HCIA-IoT V3.0 Certificate of Completion"),
+    caption: {
+      th: "เป็นหนังสือรับรองที่ Huawei ICT Academy ออกให้ผู้เรียนที่เรียนจบหลักสูตรด้าน IoT (Internet of Things หรืออินเทอร์เน็ตของสรรพสิ่ง) ระดับ HCIA ซึ่งเป็นระดับพื้นฐานของระบบรับรองหัวเว่ย",
+      en: "A document issued by Huawei ICT Academy to learners who finish its IoT (Internet of Things) course at the HCIA level, the foundational tier of Huawei’s certification framework.",
+      zh: "华为ICT学院颁发给完成物联网（IoT）课程学习的学员的证明文件，课程属于华为认证体系中的HCIA（基础）级别。",
+    },
+  },
   pending,
   pending,
   pending,
