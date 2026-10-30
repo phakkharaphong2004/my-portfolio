@@ -4,9 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { LangProvider } from "./components/LangProvider";
 import LangSwitcher from "./components/LangSwitcher";
-import FallingIcons from "./components/FallingIcons";
 import SoundManager from "./components/SoundManager";
-import CursorGlow from "./components/CursorGlow";
 import BootIntro from "./components/BootIntro";
 import ClickRipple from "./components/ClickRipple";
 
@@ -39,10 +37,8 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <LangProvider>
           <Navbar />
-          <LangSwitcher />
-          <FallingIcons />
+          <LangSwitcher />        
           <SoundManager />
-          <CursorGlow />
           <BootIntro />
           <ClickRipple />
           {children}
