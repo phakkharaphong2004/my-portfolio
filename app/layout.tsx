@@ -6,6 +6,8 @@ import { LangProvider } from "./components/LangProvider";
 import LangSwitcher from "./components/LangSwitcher";
 import FallingIcons from "./components/FallingIcons";
 import SoundManager from "./components/SoundManager";
+import CursorGlow from "./components/CursorGlow";
+import BootIntro from "./components/BootIntro";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +41,8 @@ export default function RootLayout({
           <LangSwitcher />
           <FallingIcons />
           <SoundManager />
+          <CursorGlow />
+          <BootIntro />
           {children}
         </LangProvider>
       </body>
