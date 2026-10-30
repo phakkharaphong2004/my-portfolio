@@ -2,99 +2,130 @@
 
 import { useEffect, useRef } from "react";
 
+// แก้ตรงนี้: true = ซ่อนลูกศรเมาส์ของระบบ ใช้แต่จุด + วงแหวน / false = โชว์ลูกศรเดิมด้วย
+const HIDE_NATIVE = true;
+
 const INTERACTIVE =
-  "a, button, [role='button'], input, textarea, select, summary, label";
+  "a, button, select, summary, label, [role='button'], [data-cursor='hover']";
+const TEXT_FIELD = "input, textarea, [contenteditable='true']";
 
 /**
- * แสงม่วง-น้ำเงินตามเมาส์แบบหน่วง ๆ + วงแหวนเล็กที่ขยายเมื่อชี้ลิงก์/ปุ่ม
- * - ไม่แสดงบนอุปกรณ์สัมผัส และเคารพ prefers-reduced-motion
- * - ใช้ ref + rAF แก้ style ตรง ๆ จึงไม่ทำให้ React re-render
+ * เคอร์เซอร์แบบ จุด + วงแหวนคม ๆ
+ * - จุดตามเมาส์ทันที / วงแหวนตามหลังนิดหน่อย
+ * - ชี้ลิงก์หรือปุ่ม: วงแหวนขยายและมีสีเติมจาง ๆ จุดเล็กลง
+ * - กดเมาส์: วงแหวนหดลง
+ * - ช่องกรอกข้อความ: ซ่อนเคอร์เซอร์นี้แล้วใช้เคอร์เซอร์ตัวพิมพ์ของระบบ
+ * - ไม่แสดงบนจอสัมผัส และเคารพ prefers-reduced-motion
  */
 export default function CursorGlow() {
-  const glowRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const glow = glowRef.current;
+    const dot = dotRef.current;
     const ring = ringRef.current;
-    if (!glow || !ring) return;
+    if (!dot || !ring) return;
 
-    let tx = 0;
-    let ty = 0; // ตำแหน่งเมาส์จริง
-    let gx = 0;
-    let gy = 0; // ตำแหน่งแสงใหญ่ (ตามช้า)
+    const root = document.documentElement;
+    if (HIDE_NATIVE) root.classList.add("custom-cursor");
+
+    let x = 0;
+    let y = 0; // ตำแหน่งเมาส์จริง
     let rx = 0;
-    let ry = 0; // ตำแหน่งวงแหวน (ตามเร็วกว่า)
+    let ry = 0; // ตำแหน่งวงแหวน
     let scale = 1;
     let targetScale = 1;
+    let hovering = false;
+    let pressed = false;
     let shown = false;
     let raf = 0;
 
-    const onMove = (e: PointerEvent) => {
-      tx = e.clientX;
-      ty = e.clientY;
-      if (!shown) {
-        shown = true;
-        gx = rx = tx;
-        gy = ry = ty;
-        glow.style.opacity = "1";
-        ring.style.opacity = "1";
-      }
-      targetScale =
-        e.target instanceof Element && e.target.closest(INTERACTIVE) ? 1.9 : 1;
+    const updateScale = () => {
+      targetScale = pressed ? 0.75 : hovering ? 1.7 : 1;
     };
 
+    const onMove = (e: PointerEvent) => {
+      x = e.clientX;
+      y = e.clientY;
+
+      const t = e.target instanceof Element ? e.target : null;
+      const onText = !!t?.closest(TEXT_FIELD);
+      hovering = !onText && !!t?.closest(INTERACTIVE);
+      updateScale();
+
+      if (!shown) {
+        shown = true;
+        rx = x;
+        ry = y;
+      }
+      const visible = shown && !onText;
+      dot.style.opacity = visible ? "1" : "0";
+      ring.style.opacity = visible ? "1" : "0";
+
+      dot.style.scale = hovering ? "0.5" : "1";
+      ring.style.backgroundColor = hovering
+        ? "rgba(139, 92, 246, 0.15)"
+        : "transparent";
+
+      dot.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    };
+
+    const onDown = () => {
+      pressed = true;
+      updateScale();
+    };
+    const onUp = () => {
+      pressed = false;
+      updateScale();
+    };
     const onLeave = () => {
       shown = false;
-      glow.style.opacity = "0";
+      dot.style.opacity = "0";
       ring.style.opacity = "0";
     };
 
     const tick = () => {
-      gx += (tx - gx) * 0.08;
-      gy += (ty - gy) * 0.08;
-      rx += (tx - rx) * 0.22;
-      ry += (ty - ry) * 0.22;
-      scale += (targetScale - scale) * 0.18;
-
-      glow.style.transform = `translate3d(${gx}px, ${gy}px, 0) translate(-50%, -50%)`;
+      rx += (x - rx) * 0.2;
+      ry += (y - ry) * 0.2;
+      scale += (targetScale - scale) * 0.2;
       ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%) scale(${scale})`;
       raf = requestAnimationFrame(tick);
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
-    document.documentElement.addEventListener("mouseleave", onLeave);
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
+    root.addEventListener("mouseleave", onLeave);
     raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onMove);
-      document.documentElement.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      root.removeEventListener("mouseleave", onLeave);
+      root.classList.remove("custom-cursor");
     };
   }, []);
 
   return (
     <div aria-hidden className="pointer-events-none">
+      <style>{`
+        html.custom-cursor, html.custom-cursor * { cursor: none !important; }
+        html.custom-cursor :is(input, textarea, [contenteditable="true"]) { cursor: text !important; }
+      `}</style>
       <div
-  ref={glowRef}
-  className="fixed left-0 top-0 z-[9997] h-40 w-40 rounded-full opacity-0 transition-opacity duration-300"
-  style={{
-    background:
-      "radial-gradient(circle, rgba(139,92,246,0.28) 0%, rgba(59,130,246,0.12) 45%, transparent 70%)",
-    mixBlendMode: "screen",
-    willChange: "transform",
-  }}
-/>
+        ref={dotRef}
+        className="fixed left-0 top-0 z-[100001] h-1.5 w-1.5 rounded-full bg-[#a78bfa] opacity-0 transition-[opacity,scale] duration-200"
+        style={{ willChange: "transform" }}
+      />
       <div
         ref={ringRef}
-        className="fixed left-0 top-0 z-[9997] h-8 w-8 rounded-full border border-[#a78bfa]/70 bg-[#8B5CF6]/10 opacity-0 transition-opacity duration-300"
-        style={{
-          boxShadow: "0 0 18px rgba(139,92,246,0.45)",
-          willChange: "transform",
-        }}
+        className="fixed left-0 top-0 z-[100001] h-9 w-9 rounded-full border-[1.5px] border-[#a78bfa]/80 opacity-0 transition-[opacity,background-color] duration-200"
+        style={{ willChange: "transform" }}
       />
     </div>
   );
