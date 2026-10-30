@@ -10,7 +10,7 @@ import type { Project } from "../data/projects";
 import WindowBar from "./WindowBar";
 import { T } from "./LangProvider";
 
-// แก้ตรงนี้: "fade" = การ์ดที่ตรงขึ้นก่อน ที่เหลือต่อท้ายและจางลง, "hide" = โชว์เฉพาะการ์ดที่ตรง
+// แก้ตรงนี้: "fade" = การ์ดที่ตรงขึ้นก่อน ที่เหลือต่อท้ายตามปกติ, "hide" = โชว์เฉพาะการ์ดที่ตรง
 const MODE = "fade" as "fade" | "hide";
 
 function TagChip({
@@ -172,15 +172,13 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
 
       <div className="space-y-8">
         {ordered.map((p, idx) => {
-          const dim = matches(p) ? "" : "opacity-40 saturate-50";
-
           return (
             <motion.div
               key={p.title}
               layout="position"
               transition={{ type: "spring", stiffness: 260, damping: 32 }}
             >
-            <SpotlightCard className={dim} tilt={2}>
+            <SpotlightCard tilt={2}>
               <WindowBar
                 label={`${p.title.toLowerCase().replace(/\s+/g, "-")}.dev`}
               />
