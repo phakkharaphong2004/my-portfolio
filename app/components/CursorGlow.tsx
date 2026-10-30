@@ -79,15 +79,15 @@ export default function CursorGlow() {
   return (
     <div aria-hidden className="pointer-events-none">
       <div
-        ref={glowRef}
-        className="fixed left-0 top-0 z-[9997] h-80 w-80 rounded-full opacity-0 transition-opacity duration-300"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(139,92,246,0.22) 0%, rgba(59,130,246,0.10) 40%, transparent 70%)",
-          mixBlendMode: "screen",
-          willChange: "transform",
-        }}
-      />
+  ref={glowRef}
+  className="fixed left-0 top-0 z-[9997] h-40 w-40 rounded-full opacity-0 transition-opacity duration-300"
+  style={{
+    background:
+      "radial-gradient(circle, rgba(139,92,246,0.28) 0%, rgba(59,130,246,0.12) 45%, transparent 70%)",
+    mixBlendMode: "screen",
+    willChange: "transform",
+  }}
+/>
       <div
         ref={ringRef}
         className="fixed left-0 top-0 z-[9997] h-8 w-8 rounded-full border border-[#a78bfa]/70 bg-[#8B5CF6]/10 opacity-0 transition-opacity duration-300"
