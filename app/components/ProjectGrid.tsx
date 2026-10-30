@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { motion, MotionConfig } from "framer-motion";
 import { ArrowUpRight, FileText, PlayCircle } from "lucide-react";
 import { SpotlightCard } from "./ui/spotlight-card";
 import ProjectMarquee from "./ProjectMarquee";
@@ -9,8 +10,8 @@ import type { Project } from "../data/projects";
 import WindowBar from "./WindowBar";
 import { T } from "./LangProvider";
 
-// แก้ตรงนี้: "fade" = การ์ดที่ไม่เกี่ยวจางลง, "hide" = ซ่อนการ์ดที่ไม่เกี่ยว
-const MODE: "fade" | "hide" = "fade";
+// แก้ตรงนี้: "fade" = การ์ดที่ตรงขึ้นก่อน ที่เหลือต่อท้ายและจางลง, "hide" = โชว์เฉพาะการ์ดที่ตรง
+const MODE = "fade" as "fade" | "hide";
 
 function TagChip({
   tag,
@@ -132,34 +133,54 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
       .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
   }, [projects]);
 
+  const barRef = useRef<HTMLDivElement>(null);
+
   const matches = (p: Project) => !active || p.tags.includes(active);
   const shown = projects.filter(matches).length;
 
-  const toggleTag = (tag: string) =>
-    setActive((cur) => (cur === tag ? null : tag));
+  // โปรเจกต์ที่ตรงกับแท็กขึ้นก่อน (เรียงตามลำดับเดิม) ที่เหลือตามหลัง
+  const ordered = useMemo(() => {
+    if (!active) return projects;
+    const hit = projects.filter((p) => p.tags.includes(active));
+    const rest = projects.filter((p) => !p.tags.includes(active));
+    return MODE === "hide" ? hit : [...hit, ...rest];
+  }, [projects, active]);
+
+  const select = (tag: string | null) => {
+    setActive(tag);
+    // กดแท็กจากการ์ดที่อยู่ไกลลงไป: เลื่อนกลับขึ้นมาดูรายการที่เรียงใหม่
+    const el = barRef.current;
+    if (tag && el && el.getBoundingClientRect().top < 80) {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }
+  };
+
+  const toggleTag = (tag: string) => select(active === tag ? null : tag);
 
   return (
-    <>
-      <FilterBar
-        tags={allTags}
-        active={active}
-        onSelect={setActive}
-        shown={shown}
-        total={projects.length}
-      />
+    <MotionConfig reducedMotion="user">
+      <div ref={barRef} className="scroll-mt-28">
+        <FilterBar
+          tags={allTags}
+          active={active}
+          onSelect={select}
+          shown={shown}
+          total={projects.length}
+        />
+      </div>
 
       <div className="space-y-8">
-        {projects.map((p, idx) => {
-          const match = matches(p);
-          const dim =
-            match
-              ? ""
-              : MODE === "hide"
-                ? "hidden"
-                : "opacity-25 saturate-0";
+        {ordered.map((p, idx) => {
+          const dim = matches(p) ? "" : "opacity-40 saturate-50";
 
           return (
-            <SpotlightCard key={p.title} className={dim} tilt={2}>
+            <motion.div
+              key={p.title}
+              layout="position"
+              transition={{ type: "spring", stiffness: 260, damping: 32 }}
+            >
+            <SpotlightCard className={dim} tilt={2}>
               <WindowBar
                 label={`${p.title.toLowerCase().replace(/\s+/g, "-")}.dev`}
               />
@@ -288,9 +309,10 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                 </div>
               </div>
             </SpotlightCard>
+            </motion.div>
           );
         })}
       </div>
-    </>
+    </MotionConfig>
   );
 }
