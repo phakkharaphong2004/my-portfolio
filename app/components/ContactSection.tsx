@@ -102,7 +102,7 @@ export default function ContactSection({
       {/* 4 ใบเรียงแถวเดียวบนจอใหญ่ / 2x2 บนจอกลาง / 1 คอลัมน์บนมือถือ */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {contacts.map((c) => (
-          <SpotlightCard key={c.label} className="h-full" spotlightColor={c.glow}>
+          <SpotlightCard key={c.label} className="h-full" spotlightColor={c.glow} tilt={8}>
             <a
               href={c.href}
               target={c.href.startsWith("http") ? "_blank" : undefined}

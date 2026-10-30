@@ -7,10 +7,13 @@ export const SpotlightCard = ({
   children,
   className = "",
   spotlightColor = "rgba(139, 92, 246, 0.28)",
+  tilt = 0,
 }: {
   children: ReactNode;
   className?: string;
   spotlightColor?: string;
+  /** องศาเอียงสูงสุดตามเมาส์ (0 = ปิด) การ์ดเล็กใช้ 6-10 การ์ดใหญ่ใช้ 1-3 */
+  tilt?: number;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -18,10 +21,20 @@ export const SpotlightCard = ({
   const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = (e: { clientX: number; clientY: number }) => {
-    if (!divRef.current || isFocused) return;
+    const el = divRef.current;
+    if (!el) return;
 
-    const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    if (!isFocused) setPosition({ x, y });
+
+    if (tilt > 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const px = x / rect.width - 0.5; // -0.5 ถึง 0.5
+      const py = y / rect.height - 0.5;
+      el.style.transform = `perspective(900px) rotateX(${(-py * tilt).toFixed(2)}deg) rotateY(${(px * tilt).toFixed(2)}deg)`;
+    }
   };
 
   const handleFocus = () => {
@@ -40,6 +53,7 @@ export const SpotlightCard = ({
 
   const handleMouseLeave = () => {
     setOpacity(0);
+    if (divRef.current) divRef.current.style.transform = ""; // กลับมาตั้งตรง
   };
 
   return (
